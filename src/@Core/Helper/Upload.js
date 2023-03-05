@@ -1,0 +1,42 @@
+/*
+ * Created Date: 04-03-2023, 00:15 pm
+ * Author: Nghiêm Mạnh Cường
+ * Email: nghiemmanhcuong98@gmail.com
+ * -----
+ * Last Modified:
+ * Modified By:
+ * -----
+ * Copyright (c) ...
+ * -----
+ * HISTORY:
+ * Date      	By	Comments
+ * ----------	---	----------------------------------------------------------
+ */
+
+import { errorMessage } from './Message';
+
+export const uploadCloudinary = async file => {
+    let image_url = '';
+    const formData = new FormData();
+
+    formData.append('file', file);
+    formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+    formData.append('cloud_name', import.meta.env.VITE_CLOUDINARY_NAME);
+
+    await fetch(
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME}/image/upload`,
+        { method: 'POST', body: formData }
+    )
+        .then(data => {
+            return data.json();
+        })
+        .then(data => {
+            image_url = data.url;
+        })
+        .catch(error => {
+            console.log(error);
+            errorMessage('Có lỗi sảy ra khi tải ảnh');
+        });
+
+    return image_url;
+};
