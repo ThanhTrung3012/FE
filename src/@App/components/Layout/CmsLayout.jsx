@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AppBar, Avatar, Box, CircularProgress, Drawer, Toolbar, Paper } from '@mui/material';
+import { AppBar, Avatar, Box, CircularProgress, Drawer, Toolbar } from '@mui/material';
 import Leftmenu from '../Menu/Leftmenu/Leftmenu';
 
 const drawerWidth = 240;
@@ -27,7 +27,6 @@ const CmsLayout = () => {
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
                     }}
                     open
-                    PaperProps={<Paper />}
                 >
                     <Leftmenu />
                 </Drawer>
