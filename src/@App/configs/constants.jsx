@@ -13,11 +13,34 @@
  * ----------	---	----------------------------------------------------------
  */
 
+const basePath = '/'
+const adminPath = '/cms'
+
 export const WEB_ROUTERS = {
-    home: '/'
+    home: basePath
 }
 
 export const CMS_ROUTERS = {
-    doashboard: '/cms'
+    doashboard: adminPath,
+    user:{
+        list:adminPath + '/user',
+        detail:adminPath + '/user/:id'
+    },
+    product:{
+        list:adminPath + '/product',
+        detail:adminPath + '/product/:id'
+    },
+    category:{
+        list:adminPath + '/category',
+        detail:adminPath + '/category/:id'
+    },
+    sales:{
+        list:adminPath + '/sales',
+        detail:adminPath + '/sales/:id'
+    },
+    order:{
+        list:adminPath + '/order',
+        detail:adminPath + '/order/:id'
+    },
 }
 
