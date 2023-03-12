@@ -13,11 +13,12 @@
  * ----------	---	----------------------------------------------------------
  */
 
-import { Box, Icon, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Box, IconButton, InputAdornment, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 import BackupRoundedIcon from '@mui/icons-material/BackupRounded';
 import React, { useCallback, useRef, useState } from 'react';
 import { useController } from 'react-hook-form';
+import { isArray } from 'lodash';
 
 const CoreInputFile = props => {
     const {
@@ -44,11 +45,23 @@ const CoreInputFile = props => {
 
     const handleChange = useCallback(async event => {
         const { files } = event.target;
-        if (files[0]) {
-            setFile(files[0]);
-            onChange(files[0]);
+        if (files) {
+            if (multiple) {
+                setFile(files);
+                const fileList = Object.entries(files).map(file => file[1])
+                onChange(fileList);
+            } else {
+                setFile(files[0]);
+                onChange(files[0]);
+            }
         }
     }, []);
+
+    const getFileName = () => {
+        if(value && isArray(value)) {
+            return value.map(item => item.name).join(',')
+        }
+    }
 
     const handleClick = () => {
         inputRef.current.click();
@@ -61,7 +74,7 @@ const CoreInputFile = props => {
                     fullWidth
                     label={label}
                     placeholder={placeholder || 'No files are selected!'}
-                    value={value?.name ?? ''}
+                    value={(multiple ? getFileName() : value?.name) ?? ''}
                     inputRef={ref}
                     error={!!error}
                     helperText={(error && error.message) || helperText || undefined}
