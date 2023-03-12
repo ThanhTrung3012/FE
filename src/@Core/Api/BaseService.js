@@ -13,7 +13,7 @@
  * ----------	---	----------------------------------------------------------
  */
 
-import has from 'lodash.has';
+import {has} from 'lodash';
 import middlewares from './Middleware';
 import createInstance from './Axios';
 
@@ -69,8 +69,8 @@ class BaseService {
         this.request = createInstance(this.BASE_URL, this.middleware);
 
         this.requestParams = {
-            page: this.DEFAULT_PAGE,
-            limit: this.DEFAULT_LIMIT,
+            page_index: this.DEFAULT_PAGE,
+            page_size: this.DEFAULT_LIMIT,
             sort: this.DEFAULT_SORT
         };
     }
@@ -79,7 +79,7 @@ class BaseService {
      * @param {Object} query 
      * @returns 
      */
-    list(query = {}) {
+    list = (query = {}) => {
         const params = {
             ...this.requestParams,
             ...query
@@ -91,7 +91,7 @@ class BaseService {
      * @param {string} id 
      * @returns 
      */
-    find(id) {
+    find = (id) => {
         const url = `${this.BASE_ENDPOINT}/${id}`;
         return this.request.get(url);
     }
@@ -100,7 +100,7 @@ class BaseService {
      * @param {Object} data 
      * @returns 
      */
-    create(data) {
+    create = (data) => {
         return this.request.post(this.BASE_URL, data)
     }
 
@@ -108,7 +108,7 @@ class BaseService {
      * @param {Object} data 
      * @returns 
      */
-    update(data) {
+    update = (data) => {
         const {PRIMARY_KEY} = this
         return this.request.put(`${this.BASE_URL}/${data[PRIMARY_KEY]}`,data)
     }
@@ -117,7 +117,7 @@ class BaseService {
      * @param {Object} data 
      * @returns 
      */
-    save(data) {
+    save = (data) => {
         if(data.hasOwnProperty(this.PRIMARY_KEY) && data[this.PRIMARY_KEY]){
             return this.update(data)
         }else {

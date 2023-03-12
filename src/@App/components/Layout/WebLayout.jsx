@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import Loading from '@Core/components/Loading/CoreLoading';
 import { Outlet } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 const WebLayout = () => {
     return (
@@ -8,7 +8,7 @@ const WebLayout = () => {
             <Suspense
                 fallback={
                     <div className='flex justify-center items-center h-screen w-screen'>
-                        <Loading />
+                        <CircularProgress />
                     </div>
                 }
             >
