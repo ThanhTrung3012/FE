@@ -54,6 +54,7 @@ const CoreSwiper = props => {
             effect={effect}
             loop={loop}
             modules={modules}
+            initialSlide={initialSlide}
             {...restProps}
         >
             {data.map((item, index) => (

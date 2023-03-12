@@ -12,13 +12,29 @@
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
  */
-import {WEB_ROUTERS} from './constants'
+import {CMS_ROUTERS} from './constants'
 
 const menuConfigs = [
     {
-        title: 'Trang chủ',
-        path: WEB_ROUTERS.home
-    }
+        title: 'User Management',
+        path: CMS_ROUTERS.user.list
+    },
+    {
+        title: 'Product Management',
+        path: CMS_ROUTERS.product.list
+    },
+    {
+        title: 'Sales Manager',
+        path: CMS_ROUTERS.sales.list
+    },
+    {
+        title: 'Order Management',
+        path: CMS_ROUTERS.order.list
+    },
+    {
+        title: 'Category Management',
+        path: CMS_ROUTERS.category.list
+    },
 ]
 
 export default menuConfigs;
