@@ -19,102 +19,107 @@ import LazyLoad from 'react-lazyload';
 import clsx from 'clsx';
 import { NextButton, PrevButton } from './SwiperButton';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { Box, Typography } from '@mui/material';
 
 const CoreSwiper = props => {
     const {
-        data,
-        isImageOnly,
-        imgTagClassName,
+        data = [],
+        isImageOnly = false,
+        imgTagClassName = '',
         SlideItem,
-        spaceBetween,
-        slidesPerView,
-        speed,
-        breakpoints,
-        direction,
-        effect,
+        spaceBetween = 10,
+        slidesPerView = 4,
+        speed = 300,
+        direction = 'horizontal',
+        effect = 'slide',
         initialSlide,
-        loop,
-        modules,
-        LazyLoadHeight,
-        LazyLoadOnce,
-        LazyLoadOffset,
+        loop = false,
+        modules = [],
+        LazyLoadHeight = 200,
+        LazyLoadOnce = true,
+        LazyLoadOffset = 0,
+        isGallery = false,
+        isShowButton = true,
         ...restProps
     } = props;
 
-    return (
-        <Swiper
-            className='relative'
-            spaceBetween={spaceBetween}
-            slidesPerView={slidesPerView}
-            speed={speed}
-            breakpoints={breakpoints}
-            centerInsufficientSlides={true}
-            // centeredSlides={true}
-            direction={direction}
-            effect={effect}
-            loop={loop}
-            modules={modules}
-            initialSlide={initialSlide}
-            {...restProps}
-        >
-            {data.map((item, index) => (
-                <SwiperSlide key={index}>
-                    <LazyLoad height={LazyLoadHeight} once={LazyLoadOnce} offset={LazyLoadOffset}>
-                        {isImageOnly ? (
-                            <img
-                                src={item}
-                                className={clsx(
-                                    'h-[500px] w-full mx-auto object-cover',
-                                    imgTagClassName
-                                )}
-                            />
-                        ) : (
-                            <SlideItem item={item} />
-                        )}
-                    </LazyLoad>
-                </SwiperSlide>
-            ))}
-            <NextButton />
-            <PrevButton />
-        </Swiper>
-    );
-};
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-CoreSwiper.defaultProps = {
-    data: [],
-    isImageOnly: false,
-    spaceBetween: 30,
-    slidesPerView: 1,
-    speed: 300,
-    breakpoints: {
-        // when window width is >= 320px
-        320: {
-            slidesPerView: 2,
-            spaceBetween: 20
-        },
-        // when window width is >= 768px
-        768: {
-            slidesPerView: 3,
-            spaceBetween: 30
-        },
-        // when window width is >= 1024px
-        1024: {
-            slidesPerView: 4,
-            spaceBetween: 40
-        }
-    },
-    direction: 'horizontal',
-    effect: 'slide',
-    loop: false,
-    initialSlide: 0,
-    LazyLoadHeight: 200,
-    LazyLoadOnce: true,
-    LazyLoadOffset: 0,
-    modules: []
+    return (
+        <>
+            <Swiper
+                className='relative'
+                loop={loop}
+                speed={speed}
+                effect={effect}
+                modules={modules}
+                direction={direction}
+                initialSlide={initialSlide}
+                spaceBetween={spaceBetween}
+                slidesPerView={slidesPerView}
+                centerInsufficientSlides={true}
+                thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+                {...restProps}
+            >
+                {data.map((item, index) => (
+                    <SwiperSlide key={index}>
+                        <LazyLoad
+                            height={LazyLoadHeight}
+                            once={LazyLoadOnce}
+                            offset={LazyLoadOffset}
+                        >
+                            {isImageOnly ? (
+                                <img
+                                    src={isGallery ? item.image : item}
+                                    className={clsx(
+                                        'h-[500px] w-full mx-auto object-cover',
+                                        imgTagClassName
+                                    )}
+                                />
+                            ) : (
+                                <SlideItem item={item} />
+                            )}
+                        </LazyLoad>
+                    </SwiperSlide>
+                ))}
+                {isShowButton && (
+                    <>
+                        <NextButton />
+                        <PrevButton />
+                    </>
+                )}
+            </Swiper>
+            {isGallery && (
+                <Swiper
+                    onSwiper={setThumbsSwiper}
+                    loop={true}
+                    spaceBetween={10}
+                    slidesPerView={4}
+                    freeMode={true}
+                    watchSlidesProgress={true}
+                    modules={modules}
+                    effect={effect}
+                    speed={speed}
+                >
+                    {data.map(item => {
+                        return (
+                            <SwiperSlide>
+                                <Box className='text-center p-4 cursor-pointer'>
+                                    <Typography>{item.title}</Typography>
+                                </Box>
+                            </SwiperSlide>
+                        );
+                    })}
+                </Swiper>
+            )}
+        </>
+    );
 };
 
 CoreSwiper.propTypes = {
     data: PropTypes.array.isRequired,
+    SlideItem: PropTypes.element,
     imgTagClassName: PropTypes.string,
     isImageOnly: PropTypes.bool,
     spaceBetween: PropTypes.number,
@@ -125,7 +130,9 @@ CoreSwiper.propTypes = {
     modules: PropTypes.array,
     LazyLoadHeight: PropTypes.number,
     LazyLoadOnce: PropTypes.bool,
-    LazyLoadOffset: PropTypes.number
+    LazyLoadOffset: PropTypes.number,
+    isShowButton: PropTypes.bool,
+    isGallery: PropTypes.bool
 };
 
 export default React.memo(CoreSwiper);
