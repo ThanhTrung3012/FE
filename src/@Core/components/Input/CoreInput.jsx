@@ -20,6 +20,7 @@ const CoreInput = props => {
         minRows,
         maxRows,
         InputProps,
+        spacing,
         ...restProps
     } = props;
 
@@ -34,7 +35,7 @@ const CoreInput = props => {
     });
 
     return (
-        <Box className='w-full flex items-center gap-x-[4.8rem]'>
+        <Box className={clsx('w-full flex items-center gap-x-[4.8rem]',spacing)}>
             {label ? (
                 <Typography className='text-[12px]' component='label'>
                     {label}
