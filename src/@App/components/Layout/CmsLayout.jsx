@@ -16,7 +16,7 @@ const CmsLayout = () => {
                             alt=''
                         />
                     </Box>
-                    <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+                    <Avatar alt='Remy Sharp' src='' />
                 </Toolbar>
             </AppBar>
             <Box component='nav' sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>

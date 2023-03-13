@@ -4,16 +4,25 @@ import { RouterProvider } from 'react-router-dom';
 import appRouterConfigs from './AppRouters';
 import { HelmetProvider } from 'react-helmet-async';
 import CoreThemeProvider from '@Core/components/Theme/CoreTheme';
+import CoreConfirmProvider from '@Core/components/Confirm/CoreConfirm';
 
 function App() {
+    const isCms = window.location.pathname.includes('/cms');
+
     return (
         <CoreThemeProvider>
-            <AppContextProvider>
-                <HelmetProvider>
+            {isCms ? (
+                <CoreConfirmProvider>
                     <RouterProvider router={appRouterConfigs} />
                     <ToastContainer />
-                </HelmetProvider>
-            </AppContextProvider>
+                </CoreConfirmProvider>
+            ) : (
+                <AppContextProvider>
+                    <HelmetProvider>
+                        <RouterProvider router={appRouterConfigs} />
+                    </HelmetProvider>
+                </AppContextProvider>
+            )}
         </CoreThemeProvider>
     );
 }
