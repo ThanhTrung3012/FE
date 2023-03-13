@@ -13,7 +13,13 @@ const defaultTheme = createTheme({
             main: '#eeeeee',
             dark: '#bdbdbd',
             contrastText: '#000',
-        }
+        },
+        info:{
+            light: '#9e9e9e',
+            main: '#757575',
+            dark: '#424242',
+            contrastText: '#000',
+        },
     },
     typography:{
         h5:{

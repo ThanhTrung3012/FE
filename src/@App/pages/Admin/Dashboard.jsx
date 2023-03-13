@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Helmet from '@Core/components/Helmet';
+import { Box } from '@mui/material';
+import React from 'react';
 
 const Home = () => {
 
     return (
-        <Helmet pageTitle='Wellcom to my app' pageDescription='Wellcom to my app'>
+        <Box className='flex items-center h-full justify-center'>
             <h1>Chào mừng đến với ứng dụng của tôi!</h1>
-        </Helmet>
+        </Box>
     );
 };
 
