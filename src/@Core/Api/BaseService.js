@@ -28,25 +28,13 @@ class BaseService {
 
     PRIMARY_KEY = 'id'
 
-    DEFAULT_SORT = 'created_at desc';
+    DEFAULT_SORT = 'created_at -1';
 
     ALL_MIDDLEWARES = {
         ...middlewares
     };
 
     constructor(props) {
-        if (has(props, 'BASE_URL')) {
-            this.BASE_URL = props.BASE_URL;
-        }
-
-        if (has(props, 'BASE_ENDPOINT')) {
-            this.BASE_ENDPOINT = props.BASE_ENDPOINT;
-        }
-
-        if (has(props, 'DEFAULT_SORT')) {
-            this.DEFAULT_SORT = props.DEFAULT_SORT;
-        }
-
         this.setRequest();
     }
 

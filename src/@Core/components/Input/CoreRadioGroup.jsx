@@ -1,3 +1,18 @@
+/*
+ * Created Date: 03-02-2023, 21:00 pm
+ * Author: Nghiêm Mạnh Cường
+ * Email: nghiemmanhcuong98@gmail.com
+ * -----
+ * Last Modified:
+ * Modified By:
+ * -----
+ * Copyright (c) ...
+ * -----
+ * HISTORY:
+ * Date      	By	Comments
+ * ----------	---	----------------------------------------------------------
+ */
+
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import PropTypes from 'prop-types';
@@ -38,7 +53,11 @@ const CoreRadioGroup = props => {
                                 {options.map((option, i) => {
                                     return (
                                         <FormControlLabel
-                                            label={<Typography variant='body2'>{option?.label}</Typography>}
+                                            label={
+                                                <Typography variant='body2'>
+                                                    {option?.label}
+                                                </Typography>
+                                            }
                                             value={option?.value}
                                             key={option?.key}
                                             control={<Radio color='primary' />}
