@@ -41,9 +41,9 @@ export const CMS_ROUTERS = {
         list:adminPath + '/sales',
         detail:adminPath + '/sales/:id'
     },
-    order:{
-        list:adminPath + '/order',
-        detail:adminPath + '/order/:id'
+    showRoom:{
+        list:adminPath + '/show-room',
+        detail:adminPath + '/show-room/:id'
     },
 }
 

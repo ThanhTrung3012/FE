@@ -52,7 +52,7 @@ const CoreInput = props => {
     return (
         <Box className={clsx('w-full',spacing)}>
             {label && !isOutlined ? (
-                <Typography className='text-[12px] min-w-max' component='label'>
+                <Typography  variant='h5' component='label'>
                     {label}
                 </Typography>
             ) : null}

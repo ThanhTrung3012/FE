@@ -24,16 +24,8 @@ const menuConfigs = [
         path: CMS_ROUTERS.category.list
     },
     {
-        title: 'Sales Manager',
-        path: CMS_ROUTERS.sales.list
-    },
-    {
-        title: 'Order Management',
-        path: CMS_ROUTERS.order.list
-    },
-    {
-        title: 'Category Management',
-        path: CMS_ROUTERS.category.list
+        title: 'Quản lý của hàng',
+        path: CMS_ROUTERS.showRoom.list
     },
 ]
 

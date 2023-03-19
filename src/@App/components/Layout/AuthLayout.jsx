@@ -26,7 +26,7 @@ const AuthLayout = () => {
 
     useEffect(() => {
         if (token) {
-            navigate(CMS_ROUTERS.doashboard);
+            navigate(CMS_ROUTERS.user.list);
         }
     }, []);
 
