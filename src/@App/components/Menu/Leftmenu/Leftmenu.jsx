@@ -40,7 +40,7 @@ const Leftmenu = () => {
     };
 
     return (
-        <Box className='pt-[60px]'>
+        <Box className='pt-[57px]'>
             <Toolbar disableGutters>
                 <List className='w-full'>
                     {menuConfigs.map((item, index) => {

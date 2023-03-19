@@ -16,12 +16,12 @@ import {CMS_ROUTERS} from './constants'
 
 const menuConfigs = [
     {
-        title: 'User Management',
+        title: 'Quản lý người dùng',
         path: CMS_ROUTERS.user.list
     },
     {
-        title: 'Product Management',
-        path: CMS_ROUTERS.product.list
+        title: 'Quản lý loại sản phẩm',
+        path: CMS_ROUTERS.category.list
     },
     {
         title: 'Sales Manager',

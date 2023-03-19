@@ -34,9 +34,10 @@ const useCoreTable = requests => {
     }, []);
 
     return {
-        data,
-        pageSize: data?.page_size ?? 10,
-        pageIndex: data?.page_index ?? 1,
+        data:data?.data,
+        pageSize: Number(data?.page_size) ?? 10,
+        pageIndex: Number(data?.page_index) ?? 1,
+        total:Number(data?.total),
         handleFetchData,
         loading
     };

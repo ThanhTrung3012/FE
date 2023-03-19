@@ -34,8 +34,8 @@ const CoreInput = props => {
         multiline,
         minRows,
         maxRows,
-        InputProps,
         spacing,
+        isOutlined,
         ...restProps
     } = props;
 
@@ -50,9 +50,9 @@ const CoreInput = props => {
     });
 
     return (
-        <Box className={clsx('w-full flex items-center gap-x-[4.8rem]',spacing)}>
-            {label ? (
-                <Typography className='text-[12px]' component='label'>
+        <Box className={clsx('w-full',spacing)}>
+            {label && !isOutlined ? (
+                <Typography className='text-[12px] min-w-max' component='label'>
                     {label}
                 </Typography>
             ) : null}
@@ -73,9 +73,7 @@ const CoreInput = props => {
                     inputProps={{
                         readOnly
                     }}
-                    InputProps={{
-                        ...InputProps
-                    }}
+                    label={isOutlined ? label : ''}
                     {...restProps}
                 />
             </Box>
@@ -96,7 +94,6 @@ CoreInput.defaultProps = {
     multiline: false,
     minRows: 3,
     maxRows: 5,
-    InputProps: {}
 };
 
 CoreInput.propTypes = {
@@ -113,7 +110,6 @@ CoreInput.propTypes = {
     multiline: PropTypes.bool,
     minRows: PropTypes.number,
     maxRows: PropTypes.number,
-    InputProps: PropTypes.object
 };
 
 export default React.memo(CoreInput);

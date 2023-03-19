@@ -1,16 +1,20 @@
-
-.Mui-selected{
+.Mui-selected {
     color: white !important;
     background-color: #1e88e5 !important;
 }
 
 .css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
-    box-shadow: rgb(0 0 0 / 20%) 0px 3px 3px -2px, rgb(0 0 0 / 14%) 0px 3px 4px 0px, rgb(0 0 0 / 12%) 0px 1px 8px 0px !important;
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 3px -2px, rgb(0 0 0 / 14%) 0px 3px 4px 0px,
+        rgb(0 0 0 / 12%) 0px 1px 8px 0px !important;
 }
 
 .swiper-slide-thumb-active {
-    background-color: #F8F8F9;
-    border-bottom: 2px solid #F06837;
+    background-color: #f8f8f9;
+    border-bottom: 2px solid #f06837;
+}
+
+.MuiButtonBase-root {
+    text-transform: capitalize !important;
 }
 
 @tailwind base;

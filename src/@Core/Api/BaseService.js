@@ -13,7 +13,7 @@
  * ----------	---	----------------------------------------------------------
  */
 
-import {has} from 'lodash';
+import { has } from 'lodash';
 import middlewares from './Middleware';
 import createInstance from './Axios';
 
@@ -26,9 +26,9 @@ class BaseService {
 
     DEFAULT_PAGE = 1;
 
-    PRIMARY_KEY = 'id'
+    PRIMARY_KEY = 'id';
 
-    DEFAULT_SORT = 'created_at -1';
+    DEFAULT_SORT = 'createdAt -1';
 
     ALL_MIDDLEWARES = {
         ...middlewares
@@ -39,10 +39,10 @@ class BaseService {
     }
 
     /**
-     * @param {AxiosRequestConfig} requestConfig 
-     * @returns 
+     * @param {AxiosRequestConfig} requestConfig
+     * @returns
      */
-    middleware = (requestConfig) => {
+    middleware = requestConfig => {
         const arr = Object.values(this.ALL_MIDDLEWARES).map(m => {
             if (typeof m === 'function') {
                 return m(requestConfig);
@@ -51,7 +51,7 @@ class BaseService {
             return m;
         });
         return arr;
-    }
+    };
 
     setRequest() {
         this.request = createInstance(this.BASE_URL, this.middleware);
@@ -64,8 +64,8 @@ class BaseService {
     }
 
     /**
-     * @param {Object} query 
-     * @returns 
+     * @param {Object} query
+     * @returns
      */
     list = (query = {}) => {
         const params = {
@@ -73,45 +73,53 @@ class BaseService {
             ...query
         };
         return this.request.get(this.BASE_ENDPOINT, { params });
-    }
+    };
 
     /**
-     * @param {string} id 
-     * @returns 
+     * @param {string} id
+     * @returns
      */
-    find = (id) => {
+    find = id => {
         const url = `${this.BASE_ENDPOINT}/${id}`;
         return this.request.get(url);
-    }
+    };
 
     /**
-     * @param {Object} data 
-     * @returns 
+     * @param {Object} data
+     * @returns
      */
-    create = (data) => {
-        return this.request.post(this.BASE_URL, data)
-    }
+    create = data => {
+        return this.request.post(this.BASE_ENDPOINT, data);
+    };
 
     /**
-     * @param {Object} data 
-     * @returns 
+     * @param {Object} data
+     * @returns
      */
-    update = (data) => {
-        const {PRIMARY_KEY} = this
-        return this.request.put(`${this.BASE_URL}/${data[PRIMARY_KEY]}`,data)
-    }
+    update = data => {
+        const { PRIMARY_KEY } = this;
+        return this.request.put(`${this.BASE_ENDPOINT}/${data[PRIMARY_KEY]}`, data);
+    };
 
     /**
-     * @param {Object} data 
-     * @returns 
+     * @param {Object} data
+     * @returns
      */
-    save = (data) => {
-        if(data.hasOwnProperty(this.PRIMARY_KEY) && data[this.PRIMARY_KEY]){
-            return this.update(data)
-        }else {
-            return this.create(data)
+    save = data => {
+        if (data.hasOwnProperty(this.PRIMARY_KEY) && data[this.PRIMARY_KEY]) {
+            return this.update(data);
+        } else {
+            return this.create(data);
         }
-    }
+    };
+
+    /**
+     * @param {string} id
+     * @returns
+     */
+    delete = id => {
+        return this.request.delete(this.BASE_ENDPOINT + '/' + id);
+    };
 }
 
 export default BaseService;
