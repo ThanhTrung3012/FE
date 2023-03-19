@@ -22,7 +22,6 @@ const createInstance = (baseUrl, middleware = () => {}) => {
         timeout: 3000,
         headers: {
             'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/json'
         },
         paramsSerializer: {
             serializer: params => {

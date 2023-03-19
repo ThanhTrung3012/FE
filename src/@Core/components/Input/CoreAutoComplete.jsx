@@ -16,7 +16,7 @@
 import React, { useCallback } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { Autocomplete, TextField, Box, Typography } from '@mui/material';
+import { Autocomplete, TextField, Box, Typography, CircularProgress } from '@mui/material';
 import { Controller } from 'react-hook-form';
 import { find, map, isObject } from 'lodash';
 
@@ -68,7 +68,7 @@ const CoreAutoComplete = props => {
             control={control}
             render={({ field: { onChange, onBlur, value, ref }, fieldState: { error } }) => {
                 return (
-                    <Box className='flex items-center gap-x-20'>
+                    <>
                         {legendLabel ? (
                             <Typography variant='h5' component='label'>
                                 {legendLabel}
@@ -144,7 +144,7 @@ const CoreAutoComplete = props => {
                                 );
                             }}
                         />
-                    </Box>
+                    </>
                 );
             }}
         />

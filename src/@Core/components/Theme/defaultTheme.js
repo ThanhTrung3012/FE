@@ -33,7 +33,7 @@ const defaultTheme = createTheme({
             light: '#9e9e9e',
             main: '#757575',
             dark: '#424242',
-            contrastText: '#000',
+            contrastText: '#fff',
         },
     },
     typography:{
@@ -49,9 +49,6 @@ const defaultTheme = createTheme({
             fontSize:'1.1rem'
         }
     },
-    breakpoints:{
-        // ....
-    }
 })
 
 export default defaultTheme

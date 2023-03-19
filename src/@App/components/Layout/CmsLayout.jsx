@@ -21,7 +21,7 @@ import Leftmenu from '../Menu/Leftmenu/Leftmenu';
 import { getAuthToken } from '@Core/Helper/Session';
 import { CMS_ROUTERS } from '@App/configs/constants';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const CmsLayout = () => {
     const token = getAuthToken();
@@ -61,6 +61,7 @@ const CmsLayout = () => {
             <Box
                 component='main'
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                className='bg-gray-50'
             >
                 <Toolbar />
                 <Box className='flex flex-col h-full' sx={{ minHeight: `calc(100vh - 200px)` }}>

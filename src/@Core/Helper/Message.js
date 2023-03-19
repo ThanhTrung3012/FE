@@ -21,9 +21,9 @@ export const successMessage = (message = 'Thành công!') => {
 
 export const errorMessage = (error) => {
     if (error instanceof Error) {
-        if (error.response.data.error_message) {
-            console.error('---------------- Server Error', error.response.data.error_message)
-            toast.error(error.response.data.error_message)
+        if (error.response.data.message) {
+            console.error('---------------- Server Error', error.response.data.message)
+            toast.error(error.response.data.message)
         } else {
             console.error('---------------- Api Error', error.message)
             toast.error(error.message)

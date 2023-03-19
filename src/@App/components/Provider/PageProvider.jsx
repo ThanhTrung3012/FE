@@ -13,15 +13,14 @@
  * ----------	---	----------------------------------------------------------
  */
 
-
 import React, { createContext, useContext } from 'react';
 
-const WebPageContext = createContext();
+const PageContext = createContext();
 
-export const useWebPageContext = () => useContext(WebPageContext);
+export const usePageContext = () => useContext(PageContext);
 
-const WebPageProvider = props => {
-    return <WebPageContext.Provider value={props}>{props.children}</WebPageContext.Provider>;
+const PageProvider = props => {
+    return <PageContext.Provider value={props}>{props.children}</PageContext.Provider>;
 };
 
-export default WebPageProvider;
+export default PageProvider;

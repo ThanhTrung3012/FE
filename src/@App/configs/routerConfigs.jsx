@@ -21,6 +21,10 @@ const LazyHome = React.lazy(() => import('../pages/Web/Home'));
 
 // cms pages
 const LazyDashboard = React.lazy(() => import('../pages/Admin/Dashboard'));
+const LazyListUser = React.lazy(() => import('../pages/Admin/User/UserList'));
+const LazyUserDetail = React.lazy(() => import('../pages/Admin/User/UserDetail'));
+const LazyListCategory = React.lazy(() => import('../pages/Admin/Category/CategoryList'));
+const LazyCategoryDetail = React.lazy(() => import('../pages/Admin/Category/CategoryDetail'));
 
 export const webRouterConfigs = [
     {
@@ -34,4 +38,20 @@ export const cmsRouterConfigs = [
         path: CMS_ROUTERS.doashboard,
         element: <LazyDashboard />
     },
+    {
+        path: CMS_ROUTERS.user.list,
+        element: <LazyListUser />
+    },
+    {
+        path: CMS_ROUTERS.user.detail,
+        element: <LazyUserDetail />
+    },
+    {
+        path: CMS_ROUTERS.category.list,
+        element: <LazyListCategory />
+    },
+    {
+        path: CMS_ROUTERS.category.detail,
+        element: <LazyCategoryDetail />
+    }
 ];

@@ -15,6 +15,7 @@
 import { useConfirm } from '@Core/components/Confirm/CoreConfirm';
 import { IconButton, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import RateReviewRoundedIcon from '@mui/icons-material/RateReviewRounded';
 
 export const CoreTableActionDelete = ({ callback = () => {}, content = '' }) => {
     const confirm = useConfirm();
@@ -40,7 +41,7 @@ export const CoreTableActionEdit = ({ callback = () => {} }) => {
     return (
         <Tooltip title='Sửa'>
             <IconButton color='success' onClick={callback}>
-                <DeleteIcon />
+                <RateReviewRoundedIcon />
             </IconButton>
         </Tooltip>
     );
