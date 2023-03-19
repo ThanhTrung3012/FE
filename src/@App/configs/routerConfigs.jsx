@@ -33,5 +33,5 @@ export const cmsRouterConfigs = [
     {
         path: CMS_ROUTERS.doashboard,
         element: <LazyDashboard />
-    }
+    },
 ];

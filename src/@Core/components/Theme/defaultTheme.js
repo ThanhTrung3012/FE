@@ -37,6 +37,14 @@ const defaultTheme = createTheme({
         },
     },
     typography:{
+        h1: {
+            fontWeight:'bold',
+            fontSize:'25px'
+        },
+        h2:{
+            fontWeight:'bold',
+            fontSize:'22px'
+        },
         h5:{
             fontSize:'1.1rem'
         }

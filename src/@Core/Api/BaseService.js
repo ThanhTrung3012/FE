@@ -18,7 +18,7 @@ import middlewares from './Middleware';
 import createInstance from './Axios';
 
 class BaseService {
-    BASE_URL = '/';
+    BASE_URL = 'http://localhost:6789/api';
 
     BASE_ENDPOINT = '/api';
 

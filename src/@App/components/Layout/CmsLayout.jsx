@@ -13,14 +13,26 @@
  * ----------	---	----------------------------------------------------------
  */
 
-import React, { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { AppBar, Avatar, Box, CircularProgress, Drawer, Toolbar } from '@mui/material';
+
 import Leftmenu from '../Menu/Leftmenu/Leftmenu';
+import { getAuthToken } from '@Core/Helper/Session';
+import { CMS_ROUTERS } from '@App/configs/constants';
 
 const drawerWidth = 240;
 
 const CmsLayout = () => {
+    const token = getAuthToken();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!token) {
+            navigate(CMS_ROUTERS.auth.login);
+        }
+    }, []);
+
     return (
         <Box sx={{ display: 'flex' }}>
             <AppBar position='fixed' sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>

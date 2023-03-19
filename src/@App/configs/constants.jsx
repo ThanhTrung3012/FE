@@ -22,6 +22,9 @@ export const WEB_ROUTERS = {
 
 export const CMS_ROUTERS = {
     doashboard: adminPath,
+    auth:{
+        login: adminPath + '/login'
+    },
     user:{
         list:adminPath + '/user',
         detail:adminPath + '/user/:id'
