@@ -17,23 +17,38 @@ import { Box, Divider, List, ListItem, ListItemButton, ListItemText, Toolbar } f
 import menuConfigs from '@App/configs/menuConfigs';
 import React from 'react';
 import LeftMenuItem from './LeftMenuItem';
+import { useNavigate } from 'react-router-dom';
+import { CMS_ROUTERS } from '@App/configs/constants';
+import { clearSession } from '@Core/Helper/Session';
+import { useConfirm } from '@Core/components/Confirm/CoreConfirm';
 
 const Leftmenu = () => {
+    const navigate = useNavigate();
+    const confirm = useConfirm();
 
     const handleLogout = () => {
+        clearSession();
+        navigate(CMS_ROUTERS.auth.login);
+    };
 
-    }
+    const handleConfirmLogin = () => {
+        confirm({
+            content: 'Bạn có muốn đăng xuất tải khoản không?',
+            okText: 'Đăng xuất',
+            onOk: handleLogout
+        });
+    };
 
     return (
-        <Box className="pt-[60px]">
+        <Box className='pt-[60px]'>
             <Toolbar disableGutters>
-                <List className="w-full">
-                    {menuConfigs.map((item,index) => {
-                        return <LeftMenuItem item={item} key={index}/>;
+                <List className='w-full'>
+                    {menuConfigs.map((item, index) => {
+                        return <LeftMenuItem item={item} key={index} />;
                     })}
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemText primary={'Logout'} onClick={handleLogout} />
+                            <ListItemText primary={'Logout'} onClick={handleConfirmLogin} />
                         </ListItemButton>
                     </ListItem>
                     <Divider />

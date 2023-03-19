@@ -19,7 +19,7 @@ export const successMessage = (message = 'Thành công!') => {
     toast.success(message)
 }
 
-export const errorMessage = (error, errorText) => {
+export const errorMessage = (error) => {
     if (error instanceof Error) {
         if (error.response.data.error_message) {
             console.error('---------------- Server Error', error.response.data.error_message)
@@ -29,7 +29,7 @@ export const errorMessage = (error, errorText) => {
             toast.error(error.message)
         }
     } else if (typeof error === 'string') {
-        toast.error(errorText)
+        toast.error(error)
     } else {
         toast.error('Có lỗi sảy ra!')
     }

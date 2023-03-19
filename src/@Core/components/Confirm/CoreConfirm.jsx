@@ -99,6 +99,7 @@ const CoreConfirmProvider = props => {
                         className='text-white'
                         color={configs?.color ?? 'error'}
                         onClick={hanldeOk}
+                        size='small'
                     >
                         {configs?.okText ?? 'Xoá'}
                     </LoadingButton>

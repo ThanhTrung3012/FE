@@ -13,11 +13,23 @@
  * ----------	---	----------------------------------------------------------
  */
 
-import React, { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
+import { getAuthToken } from '@Core/Helper/Session';
+import { CMS_ROUTERS } from '@App/configs/constants';
+
 const AuthLayout = () => {
+    const token = getAuthToken();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token) {
+            navigate(CMS_ROUTERS.doashboard);
+        }
+    }, []);
+
     return (
         <div>
             <Suspense

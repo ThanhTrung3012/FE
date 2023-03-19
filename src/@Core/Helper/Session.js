@@ -12,6 +12,7 @@
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
  */
+import Cookies from 'js-cookie';
 
 const LOCAL_STORAGE = 'local';
 const SESSION_STORAGE = 'session';
@@ -70,15 +71,25 @@ export const removeSession = (name, type) => {
 export const clearSession = () => {
     localStorage.clear();
     sessionStorage.clear();
+    Cookies.remove('token')
 };
 
 export const setAuthToken = token => {
     localStorage.setItem('token'.JSON.stringify(token));
 };
 
+export const getOneWayUser = () => {
+    if (localStorage.getItem('one_way_user')) {
+        const user = getSession('one_way_user', LOCAL_STORAGE);
+        return user;
+    } else {
+        return {};
+    }
+};
+
 export const getAuthToken = () => {
-    if (localStorage.getItem('token')) {
-        const token = JSON.parse(localStorage.getItem('token'));
+    if (Cookies.get('token')) {
+        const token = Cookies.get('token');
         return token;
     } else {
         return null;
