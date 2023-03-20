@@ -21,7 +21,7 @@ const useCategoryOptions = () => {
         }
     }, [id]);
 
-    return { categoryOptions: data?.categories, loading };
+    return { categoryOptions: data, loading };
 };
 
 export default useCategoryOptions;

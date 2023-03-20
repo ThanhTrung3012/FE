@@ -28,7 +28,7 @@ import AuthLayout from './components/Layout/AuthLayout';
 
 const appRouterConfigs = createBrowserRouter([
     {
-        path: '',
+        path: '/cms',
         element: <AuthLayout />,
         children: [
             {

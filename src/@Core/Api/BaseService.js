@@ -96,9 +96,11 @@ class BaseService {
      * @param {Object} data
      * @returns
      */
-    update = data => {
-        const { PRIMARY_KEY } = this;
-        return this.request.put(`${this.BASE_ENDPOINT}/${data[PRIMARY_KEY]}`, data);
+    update = (data,id) => {
+        if(id) {
+            return this.request.put(`${this.BASE_ENDPOINT}/${id}`, data);
+        }
+        return this.request.put(`${this.BASE_ENDPOINT}/${data[this.PRIMARY_KEY]}`, data);
     };
 
     /**

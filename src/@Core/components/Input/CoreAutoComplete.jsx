@@ -34,7 +34,8 @@ const CoreAutoComplete = props => {
         readOnly,
         required,
         returnValueType,
-        legendLabel
+        legendLabel,
+        ...restProps
     } = props;
 
     const getValueOptions = useCallback(
@@ -143,6 +144,7 @@ const CoreAutoComplete = props => {
                                     />
                                 );
                             }}
+                            {...restProps}
                         />
                     </>
                 );
@@ -164,7 +166,7 @@ CoreAutoComplete.defaultProps = {
     readOnly: false,
     required: false,
     returnValueType: 'option',
-    legendLabel: null
+    legendLabel: null,
 };
 
 CoreAutoComplete.propTypes = {
@@ -180,7 +182,7 @@ CoreAutoComplete.propTypes = {
     readOnly: PropTypes.bool,
     required: PropTypes.bool,
     returnValueType: PropTypes.string,
-    legendLabel: PropTypes.string
+    legendLabel: PropTypes.string,
 };
 
 export default React.memo(CoreAutoComplete);

@@ -3,31 +3,31 @@ import React from 'react';
 import CmsPageContent from '@App/components/Layout/CmsPageContent';
 import { Link, useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
-import UserTable from './components/CategoryTable';
-import CategoryProvider from './CategoryProvider';
+import UserTable from './components/ShowRoomTable';
+import ShowRoomProvider from './ShowRoomProvider';
 import { Button } from '@mui/material';
 
-const CategoryList = () => {
+const ShowRoomList = () => {
     const navigate = useNavigate();
-    const breadcrumbs = [<Link to={CMS_ROUTERS.category.list}>Loại sản phẩm</Link>];
+    const breadcrumbs = [<Link to={CMS_ROUTERS.showRoom.list}>Cửa hàng</Link>];
 
     return (
-        <CategoryProvider>
+        <ShowRoomProvider>
             <CmsPageContent
-                title='Quản lý loại sản phẩm'
+                title='Quản lý cửa hàng'
                 breadcrumbs={breadcrumbs}
                 content={<UserTable />}
                 action={
                     <Button
                         variant='contained'
-                        onClick={() => navigate(CMS_ROUTERS.category.list + '/new')}
+                        onClick={() => navigate(CMS_ROUTERS.showRoom.list + '/new')}
                     >
-                        Thêm loại sản phẩm
+                        Thêm Cửa hàng
                     </Button>
                 }
             />
-        </CategoryProvider>
+        </ShowRoomProvider>
     );
 };
 
-export default CategoryList;
+export default ShowRoomList;

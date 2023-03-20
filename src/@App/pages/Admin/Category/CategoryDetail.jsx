@@ -11,7 +11,7 @@ const CategoryDetail = () => {
     const { isEdit, loading, category } = useCategoryDetail();
 
     const breadcrumbs = [
-        <Link to={CMS_ROUTERS.user.list}>Loại sản phẩm</Link>,
+        <Link to={CMS_ROUTERS.category.list}>Loại sản phẩm</Link>,
         <Typography>Chi tiết loại sản phẩm</Typography>
     ];
 

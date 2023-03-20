@@ -48,7 +48,7 @@ const Leftmenu = () => {
                     })}
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemText primary={'Logout'} onClick={handleConfirmLogin} />
+                            <ListItemText primary={'Đăng xuất'} onClick={handleConfirmLogin} />
                         </ListItemButton>
                     </ListItem>
                     <Divider />

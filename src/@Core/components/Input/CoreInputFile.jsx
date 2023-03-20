@@ -13,13 +13,23 @@
  * ----------	---	----------------------------------------------------------
  */
 
-import { Box, Button, IconButton, InputAdornment, TextField, Tooltip } from '@mui/material';
+import {
+    Box,
+    Button,
+    CircularProgress,
+    IconButton,
+    InputAdornment,
+    TextField,
+    Tooltip
+} from '@mui/material';
 import PropTypes from 'prop-types';
 import BackupRoundedIcon from '@mui/icons-material/BackupRounded';
 import React, { useCallback, useRef, useState } from 'react';
 import { useController } from 'react-hook-form';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { isArray } from 'lodash';
+import Image from 'mui-image';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 const CoreInputFile = props => {
     const {
@@ -31,9 +41,9 @@ const CoreInputFile = props => {
         InputLabelProps,
         required,
         helperText,
-        accept,
         isPreview,
-        multiple
+        multiple,
+        callBack
     } = props;
     const inputRef = useRef();
 
@@ -61,6 +71,7 @@ const CoreInputFile = props => {
                 };
                 reader.readAsDataURL(files[0]);
             }
+            callBack(true);
         }
     }, []);
 
@@ -107,22 +118,23 @@ const CoreInputFile = props => {
                 <input
                     type='file'
                     multiple={multiple}
-                    accept="image/*"
+                    accept='image/*'
                     ref={inputRef}
                     onChange={handleChange}
                     className='hidden'
                 />
             </>
-            <Box className='mt-3 p-5 border max-w-[350px] bg-[#eee] rounded-md relative'>
+            <Box className='mt-3 p-5 border max-w-[350px] bg-[#eee] rounded-md h-auto'>
                 <Box className='border-4 rounded-sm border-white w-full'>
-                    <img src={preview} className='w-full h-[200px] object-cover' />
-                </Box>
-                <Box className='absolute top-[-7px] right-[-10px] cursor-pointer'>
-                    <Tooltip title='Xoá'>
-                        <IconButton>
-                            <DeleteIcon color='error' />
-                        </IconButton>
-                    </Tooltip>
+                    <Image
+                        src={preview ?? value}
+                        showLoading={<CircularProgress />}
+                        duration={2000}
+                        easing='ease-in-out'
+                        sx={{ '& > img': { objectFit: 'cover' } }}
+                        height={250}
+                        errorIcon={<ImageNotSupportedIcon fontSize='large'/>}
+                    />
                 </Box>
             </Box>
         </Box>

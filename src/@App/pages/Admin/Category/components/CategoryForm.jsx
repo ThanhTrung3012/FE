@@ -13,19 +13,24 @@ import { CMS_ROUTERS } from '@App/configs/constants';
 import CoreAutoComplete from '@Core/components/Input/CoreAutoComplete';
 import { useRequest } from 'ahooks';
 import useCategoryOptions from '../hooks/useCategoryOptions';
+import { pickBy } from 'lodash';
 
 const CategoryForm = props => {
     const { category, isEdit } = props;
     const navigate = useNavigate();
-    const {categoryOptions,loading} = useCategoryOptions()
+    const { categoryOptions, loading } = useCategoryOptions();
 
-    const { control, handleSubmit } = useForm({
+    const {
+        control,
+        handleSubmit,
+        formState: { isSubmitting, isDirty }
+    } = useForm({
         mode: 'onSubmit',
         defaultValues: {
             id: category?._id ?? null,
             name: category?.name ?? '',
-            parent_id: category?.parent_id ?? '',
-            icon_url: category?.icon_url ?? ''
+            parent_id: category?.parent_id ?? null,
+            icon_url: category?.icon_url ?? null
         },
         resolver: yupResolver(
             Yup.object({
@@ -36,9 +41,10 @@ const CategoryForm = props => {
 
     const onSubmit = handleSubmit(async data => {
         try {
-            await categoryService.save(data);
+            const newData = pickBy(data, v => v !== null);
+            await categoryService.save(newData);
             navigate(CMS_ROUTERS.category.list);
-            successMessage(isEdit ? 'Sửa người dung thành công' : 'Thêm người dùng thành công');
+            successMessage(isEdit ? 'Sửa loại thành công' : 'Thêm loại thành công');
         } catch (error) {
             console.log(error);
             errorMessage(error);
@@ -73,7 +79,13 @@ const CategoryForm = props => {
                 >
                     Quay lại
                 </Button>
-                <LoadingButton variant='contained' color='primary' type='submit'>
+                <LoadingButton
+                    loading={isSubmitting}
+                    variant='contained'
+                    type='submit'
+                    disabled={!isDirty}
+                    className={!isDirty ? 'bg-gray-400 text-white' : ''}
+                >
                     {isEdit ? 'Lưu chỉnh sửa' : 'Thêm loại sản phẩm'}
                 </LoadingButton>
             </Box>
