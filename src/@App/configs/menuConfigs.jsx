@@ -31,6 +31,10 @@ const menuConfigs = [
         title: 'Quản lý của hàng',
         path: CMS_ROUTERS.showRoom.list
     },
+    {
+        title: 'Quản lý liên hệ',
+        path: CMS_ROUTERS.contact.list
+    },
 ]
 
 export default menuConfigs;

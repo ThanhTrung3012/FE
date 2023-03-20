@@ -18,7 +18,7 @@ import {useMatches, useNavigate} from 'react-router-dom'
 import { Divider, ListItem, ListItemButton, ListItemText } from '@mui/material';
 
 const isMenuSelected = (matches = [], item) => {
-	return matches.find(i => i.pathname === item?.path) ?? null
+	return matches.find(i => i.pathname.includes(item?.path)) ?? null
 }
 
 const LeftMenuItem = ({ item }) => {

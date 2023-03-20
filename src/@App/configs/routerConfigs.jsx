@@ -29,6 +29,7 @@ const LazyListShowRoom = React.lazy(() => import('../pages/Admin/ShowRoom/ShowRo
 const LazyShowRoomDetail = React.lazy(() => import('../pages/Admin/ShowRoom/ShowRoomDetail'));
 const LazyListBlogCategory = React.lazy(() => import('../pages/Admin/BlogCategory/BlogCategoryList'));
 const LazyBlogCategoryDetail = React.lazy(() => import('../pages/Admin/BlogCategory/BlogCategoryDetail'));
+const LazyContactList = React.lazy(() => import('../pages/Admin/Contact/ContactList'));
 
 export const webRouterConfigs = [
     {
@@ -73,5 +74,9 @@ export const cmsRouterConfigs = [
     {
         path: CMS_ROUTERS.blogCategory.detail,
         element: <LazyBlogCategoryDetail />
+    },
+    {
+        path: CMS_ROUTERS.contact.list,
+        element: <LazyContactList />
     },
 ];
