@@ -13,37 +13,36 @@
  * ----------	---	----------------------------------------------------------
  */
 
-const basePath = '/'
-const adminPath = '/cms'
+const basePath = '/';
+const adminPath = '/cms';
 
 export const WEB_ROUTERS = {
     home: basePath
-}
+};
 
 export const CMS_ROUTERS = {
     doashboard: adminPath,
-    auth:{
+    auth: {
         login: adminPath + '/login'
     },
-    user:{
-        list:adminPath + '/user',
-        detail:adminPath + '/user/:id'
+    user: {
+        list: adminPath + '/user',
+        detail: adminPath + '/user/:id'
     },
-    product:{
-        list:adminPath + '/product',
-        detail:adminPath + '/product/:id'
+    product: {
+        list: adminPath + '/product',
+        detail: adminPath + '/product/:id'
     },
-    category:{
-        list:adminPath + '/category',
-        detail:adminPath + '/category/:id'
+    category: {
+        list: adminPath + '/category',
+        detail: adminPath + '/category/:id'
     },
-    sales:{
-        list:adminPath + '/sales',
-        detail:adminPath + '/sales/:id'
+    blogCategory: {
+        list: adminPath + '/blog-category',
+        detail: adminPath + '/blog-category/:id'
     },
-    showRoom:{
-        list:adminPath + '/show-room',
-        detail:adminPath + '/show-room/:id'
-    },
-}
-
+    showRoom: {
+        list: adminPath + '/show-room',
+        detail: adminPath + '/show-room/:id'
+    }
+};

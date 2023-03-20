@@ -27,6 +27,8 @@ const LazyListCategory = React.lazy(() => import('../pages/Admin/Category/Catego
 const LazyCategoryDetail = React.lazy(() => import('../pages/Admin/Category/CategoryDetail'));
 const LazyListShowRoom = React.lazy(() => import('../pages/Admin/ShowRoom/ShowRoomList'));
 const LazyShowRoomDetail = React.lazy(() => import('../pages/Admin/ShowRoom/ShowRoomDetail'));
+const LazyListBlogCategory = React.lazy(() => import('../pages/Admin/BlogCategory/BlogCategoryList'));
+const LazyBlogCategoryDetail = React.lazy(() => import('../pages/Admin/BlogCategory/BlogCategoryDetail'));
 
 export const webRouterConfigs = [
     {
@@ -63,5 +65,13 @@ export const cmsRouterConfigs = [
     {
         path: CMS_ROUTERS.showRoom.detail,
         element: <LazyShowRoomDetail />
-    }
+    },
+    {
+        path: CMS_ROUTERS.blogCategory.list,
+        element: <LazyListBlogCategory />
+    },
+    {
+        path: CMS_ROUTERS.blogCategory.detail,
+        element: <LazyBlogCategoryDetail />
+    },
 ];

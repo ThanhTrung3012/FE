@@ -24,6 +24,10 @@ const menuConfigs = [
         path: CMS_ROUTERS.category.list
     },
     {
+        title: 'Quản lý danh mục bài viết',
+        path: CMS_ROUTERS.blogCategory.list
+    },
+    {
         title: 'Quản lý của hàng',
         path: CMS_ROUTERS.showRoom.list
     },
