@@ -1,8 +1,8 @@
 import { LoadingButton } from '@mui/lab';
 import { Box, Button, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Yup from '@Core/Helper/Yup'
+import Yup from '@Core/Helper/Yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import CoreInput from '@Core/components/Input/CoreInput';
@@ -16,7 +16,11 @@ const UserForm = props => {
     const { user, isEdit } = props;
     const navigate = useNavigate();
 
-    const { control, handleSubmit } = useForm({
+    const {
+        control,
+        handleSubmit,
+        formState: { isDirty, isSubmitting }
+    } = useForm({
         mode: 'onSubmit',
         defaultValues: {
             id: user?._id ?? null,
@@ -29,13 +33,12 @@ const UserForm = props => {
         resolver: yupResolver(
             Yup.object({
                 name: Yup.string().trim().required('Tên người dùng là bắt buộc'),
-                email: Yup
-                    .string()
+                email: Yup.string()
                     .trim()
                     .email('Email không đúng định dạng')
                     .required('Email người dùng là bắt buộc'),
                 phone: Yup.string().trim().required('Số điện thoại là bắt buộc'),
-                password: Yup.string().password().required('Mật khẩu là bắt buộc'),
+                password: !isEdit ? Yup.string().password().required('Mật khẩu là bắt buộc') : null
             })
         )
     });
@@ -50,7 +53,12 @@ const UserForm = props => {
             formData.append('phone', data?.phone);
             formData.append('password', data?.password);
 
-            await userService.save(formData);
+            if (isEdit) {
+                await userService.update(formData, data?.id);
+            } else {
+                await userService.save(formData);
+            }
+
             navigate(CMS_ROUTERS.user.list);
             successMessage(isEdit ? 'Sửa người dung thành công' : 'Thêm người dùng thành công');
         } catch (error) {
@@ -96,7 +104,14 @@ const UserForm = props => {
                 >
                     Quay lại
                 </Button>
-                <LoadingButton variant='contained' color='primary' type='submit'>
+                <LoadingButton
+                    variant='contained'
+                    color='primary'
+                    type='submit'
+                    loading={isSubmitting}
+                    disabled={!isDirty}
+                    className={!isDirty ? 'bg-gray-300' : ''}
+                >
                     {isEdit ? 'Lưu chỉnh sửa' : 'Thêm người dùng'}
                 </LoadingButton>
             </Box>
