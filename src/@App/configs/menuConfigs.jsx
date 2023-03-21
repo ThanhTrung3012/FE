@@ -37,7 +37,7 @@ const menuConfigs = [
     },
     {
         title: 'Quản lý đánh giá sản phẩm',
-        path: CMS_ROUTERS.productComment.list
+        path: CMS_ROUTERS.evaluate.list
     }
 ];
 
