@@ -12,7 +12,7 @@
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
  */
-import {CMS_ROUTERS} from './constants'
+import { CMS_ROUTERS } from './constants';
 
 const menuConfigs = [
     {
@@ -35,6 +35,10 @@ const menuConfigs = [
         title: 'Quản lý liên hệ',
         path: CMS_ROUTERS.contact.list
     },
-]
+    {
+        title: 'Quản lý đánh giá sản phẩm',
+        path: CMS_ROUTERS.evaluate.list
+    }
+];
 
 export default menuConfigs;
