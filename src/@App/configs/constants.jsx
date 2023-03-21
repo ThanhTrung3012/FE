@@ -38,8 +38,8 @@ export const CMS_ROUTERS = {
         detail: adminPath + '/category/:id'
     },
     blogCategory: {
-        list: adminPath + '/blog-category',
-        detail: adminPath + '/blog-category/:id'
+        list: adminPath + '/b-category',
+        detail: adminPath + '/b-category/:id'
     },
     showRoom: {
         list: adminPath + '/show-room',
