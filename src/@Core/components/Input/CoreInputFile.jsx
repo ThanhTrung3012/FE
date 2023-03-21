@@ -43,7 +43,6 @@ const CoreInputFile = props => {
         helperText,
         isPreview,
         multiple,
-        callBack
     } = props;
     const inputRef = useRef();
 
@@ -71,7 +70,6 @@ const CoreInputFile = props => {
                 };
                 reader.readAsDataURL(files[0]);
             }
-            callBack(true);
         }
     }, []);
 
