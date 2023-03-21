@@ -44,5 +44,9 @@ export const CMS_ROUTERS = {
     showRoom: {
         list: adminPath + '/show-room',
         detail: adminPath + '/show-room/:id'
+    },
+    productComment: {
+        list: adminPath + '/product-comment',
+        detail: adminPath + '/product-comment/:id'
     }
 };

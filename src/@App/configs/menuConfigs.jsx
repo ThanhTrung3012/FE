@@ -31,6 +31,10 @@ const menuConfigs = [
         title: 'Quản lý của hàng',
         path: CMS_ROUTERS.showRoom.list
     },
+    {
+        title: 'Quản lý đánh giá sản phẩm',
+        path: CMS_ROUTERS.productComment.list
+    },
 ]
 
 export default menuConfigs;
