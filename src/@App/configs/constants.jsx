@@ -48,5 +48,9 @@ export const CMS_ROUTERS = {
     evaluate: {
         list: adminPath + '/evaluate',
         detail: adminPath + '/evaluate/:id'
-    }
+    },
+    blog: {
+        list: adminPath + '/blog',
+        detail: adminPath + '/blog/:id'
+    },
 };

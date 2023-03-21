@@ -19,7 +19,6 @@ import queryString from 'query-string';
 const createInstance = (baseUrl, middleware = () => {}) => {
     const options = {
         baseURL: baseUrl,
-        timeout: 3000,
         headers: {
             'X-Requested-With': 'XMLHttpRequest',
         },
