@@ -62,6 +62,7 @@ const Login = () => {
                         fullWidth
                         disabled={!isDirty}
                         className={!isDirty ? 'bg-gray-500' : ''}
+                        size='large'
                     >
                         Đăng nhập
                     </LoadingButton>

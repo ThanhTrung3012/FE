@@ -29,9 +29,9 @@ export const CMS_ROUTERS = {
         list: adminPath + '/user',
         detail: adminPath + '/user/:id'
     },
-    product: {
-        list: adminPath + '/product',
-        detail: adminPath + '/product/:id'
+    contact: {
+        list: adminPath + '/contact',
+        detail: adminPath + '/contact/:id'
     },
     category: {
         list: adminPath + '/category',
