@@ -20,6 +20,10 @@ const menuConfigs = [
         path: CMS_ROUTERS.user.list
     },
     {
+        title: 'Quản lý sản phẩm',
+        path: CMS_ROUTERS.product.list
+    },
+    {
         title: 'Quản lý loại sản phẩm',
         path: CMS_ROUTERS.category.list
     },

@@ -53,4 +53,8 @@ export const CMS_ROUTERS = {
         list: adminPath + '/blog',
         detail: adminPath + '/blog/:id'
     },
+    product: {
+        list: adminPath + '/product',
+        detail: adminPath + '/product/:id'
+    },
 };

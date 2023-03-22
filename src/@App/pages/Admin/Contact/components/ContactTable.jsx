@@ -21,7 +21,7 @@ const CategoryTable = () => {
     const columns = useMemo(() => {
         return [
             columnHelper.accessor('_id', {
-                header: 'Mã loại'
+                header: 'Mã liên hệ'
             }),
             columnHelper.accessor('user_name', {
                 header: 'Tên người gửi'

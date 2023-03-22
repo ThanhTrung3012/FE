@@ -27,12 +27,18 @@ const LazyListCategory = React.lazy(() => import('../pages/Admin/Category/Catego
 const LazyCategoryDetail = React.lazy(() => import('../pages/Admin/Category/CategoryDetail'));
 const LazyListShowRoom = React.lazy(() => import('../pages/Admin/ShowRoom/ShowRoomList'));
 const LazyShowRoomDetail = React.lazy(() => import('../pages/Admin/ShowRoom/ShowRoomDetail'));
-const LazyListBlogCategory = React.lazy(() => import('../pages/Admin/BlogCategory/BlogCategoryList'));
-const LazyBlogCategoryDetail = React.lazy(() => import('../pages/Admin/BlogCategory/BlogCategoryDetail'));
+const LazyListBlogCategory = React.lazy(() =>
+    import('../pages/Admin/BlogCategory/BlogCategoryList')
+);
+const LazyBlogCategoryDetail = React.lazy(() =>
+    import('../pages/Admin/BlogCategory/BlogCategoryDetail')
+);
 const LazyContactList = React.lazy(() => import('../pages/Admin/Contact/ContactList'));
 const LazyEvaluateList = React.lazy(() => import('../pages/Admin/Evaluate/EvaluateList'));
 const LazyListBlog = React.lazy(() => import('../pages/Admin/Blog/BlogList'));
 const LazyBlogDetail = React.lazy(() => import('../pages/Admin/Blog/BlogDetail'));
+const LazyListProduct = React.lazy(() => import('../pages/Admin/Product/ProductList'));
+const LazyProductDetail = React.lazy(() => import('../pages/Admin/Product/ProductDetail'));
 
 export const webRouterConfigs = [
     {
@@ -48,35 +54,55 @@ export const cmsRouterConfigs = [
     },
     {
         path: CMS_ROUTERS.user.list,
-        element: <LazyListUser />
-    },
-    {
-        path: CMS_ROUTERS.user.detail,
-        element: <LazyUserDetail />
+        children: [
+            {
+                path: '',
+                element: <LazyListUser />
+            },
+            {
+                path: ':id',
+                element: <LazyUserDetail />
+            }
+        ]
     },
     {
         path: CMS_ROUTERS.category.list,
-        element: <LazyListCategory />
-    },
-    {
-        path: CMS_ROUTERS.category.detail,
-        element: <LazyCategoryDetail />
+        children: [
+            {
+                path: '',
+                element: <LazyListCategory />
+            },
+            {
+                path: ':id',
+                element: <LazyCategoryDetail />
+            }
+        ]
     },
     {
         path: CMS_ROUTERS.showRoom.list,
-        element: <LazyListShowRoom />
-    },
-    {
-        path: CMS_ROUTERS.showRoom.detail,
-        element: <LazyShowRoomDetail />
+        children: [
+            {
+                path: '',
+                element: <LazyListShowRoom />
+            },
+            {
+                path: ':id',
+                element: <LazyShowRoomDetail />
+            }
+        ]
     },
     {
         path: CMS_ROUTERS.blogCategory.list,
-        element: <LazyListBlogCategory />
-    },
-    {
-        path: CMS_ROUTERS.blogCategory.detail,
-        element: <LazyBlogCategoryDetail />
+        children: [
+            {
+                path: '',
+                element: <LazyListBlogCategory />
+            },
+            {
+                path: ':id',
+                element: <LazyBlogCategoryDetail />
+            }
+        ]
     },
     {
         path: CMS_ROUTERS.contact.list,
@@ -88,10 +114,28 @@ export const cmsRouterConfigs = [
     },
     {
         path: CMS_ROUTERS.blog.list,
-        element: <LazyListBlog />
+        children: [
+            {
+                path: '',
+                element: <LazyListBlog />
+            },
+            {
+                path: ':id',
+                element: <LazyBlogDetail />
+            }
+        ]
     },
     {
-        path: CMS_ROUTERS.blog.detail,
-        element: <LazyBlogDetail />
-    },
+        path: CMS_ROUTERS.product.list,
+        children: [
+            {
+                path: '',
+                element: <LazyListProduct />
+            },
+            {
+                path: ':id',
+                element: <LazyProductDetail />
+            }
+        ]
+    }
 ];

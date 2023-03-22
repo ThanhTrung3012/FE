@@ -43,6 +43,7 @@ const CoreInputFile = props => {
         helperText,
         isPreview,
         multiple,
+        callback
     } = props;
     const inputRef = useRef();
 
@@ -61,6 +62,7 @@ const CoreInputFile = props => {
                 setFile(files);
                 const fileList = Object.entries(files).map(file => file[1]);
                 onChange(fileList);
+                callback(true)
             } else {
                 setFile(files[0]);
                 onChange(files[0]);
@@ -122,19 +124,21 @@ const CoreInputFile = props => {
                     className='hidden'
                 />
             </>
-            <Box className='mt-3 p-5 border max-w-[350px] bg-[#eee] rounded-md h-auto'>
-                <Box className='border-4 rounded-sm border-white w-full'>
-                    <Image
-                        src={preview ?? value}
-                        showLoading={<CircularProgress />}
-                        duration={2000}
-                        easing='ease-in-out'
-                        sx={{ '& > img': { objectFit: 'cover' } }}
-                        height={250}
-                        errorIcon={<ImageNotSupportedIcon fontSize='large'/>}
-                    />
+            {isPreview && (
+                <Box className='mt-3 p-5 border max-w-[350px] bg-[#eee] rounded-md h-auto'>
+                    <Box className='border-4 rounded-sm border-white w-full'>
+                        <Image
+                            src={preview ?? value}
+                            showLoading={<CircularProgress />}
+                            duration={2000}
+                            easing='ease-in-out'
+                            sx={{ '& > img': { objectFit: 'cover' } }}
+                            height={250}
+                            errorIcon={<ImageNotSupportedIcon fontSize='large' />}
+                        />
+                    </Box>
                 </Box>
-            </Box>
+            )}
         </Box>
     );
 };
@@ -147,7 +151,8 @@ CoreInputFile.defaultProps = {
     required: false,
     helperText: null,
     accept: null,
-    isPreview: false
+    isPreview: false,
+    multiple: false,
 };
 CoreInputFile.propTypes = {
     className: PropTypes.string,
@@ -159,7 +164,8 @@ CoreInputFile.propTypes = {
     required: PropTypes.bool,
     helperText: PropTypes.string,
     accept: PropTypes.string,
-    isPreview: PropTypes.bool
+    isPreview: PropTypes.bool,
+    multiple: PropTypes.bool,
 };
 
 export default React.memo(CoreInputFile);

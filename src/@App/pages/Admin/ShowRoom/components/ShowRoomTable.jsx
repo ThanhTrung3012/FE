@@ -19,10 +19,10 @@ const UserTable = () => {
     const columns = useMemo(() => {
         return [
             columnHelper.accessor('_id', {
-                header: 'Mã người dùng'
+                header: 'Mã cửa hàng'
             }),
             columnHelper.accessor('name', {
-                header: 'Tên người dùng'
+                header: 'Tên cửa hàng'
             }),
             columnHelper.accessor('area', {
                 header: 'Khu vực'
