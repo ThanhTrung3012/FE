@@ -1,28 +1,34 @@
 import { Box, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
-import BlogCategoryFilter from './BlogCategoryFilter';
+import ProductFilter from './ProductFilter';
 import { usePageContext } from '@App/components/Provider/PageProvider';
 import CoreTable, { columnHelper } from '@Core/components/Table/CoreTable';
 import {
     CoreTableActionEdit,
     CoreTableActionDelete
 } from '@Core/components/Table/components/CoreTableActions';
-import { useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
-import moment from 'moment';
 
-const BlogCategoryTable = () => {
-    const { blogCategoryTableHandler, handleDeleteBlogCategory } = usePageContext();
+const CategoryTable = () => {
+    const { productTableHandler, handleDeleteProduct } = usePageContext();
     const navigate = useNavigate();
 
     const columns = useMemo(() => {
         return [
             columnHelper.accessor('_id', {
-                header: 'Mã danh mục'
+                header: 'Mã sản phẩm'
             }),
             columnHelper.accessor('name', {
-                header: 'Tên danh mục'
+                header: 'Tên sản phẩm'
+            }),
+            columnHelper.accessor('discount', {
+                header: 'Giảm giá(%)'
+            }),
+            columnHelper.accessor('sold', {
+                header: 'Lượt bán'
             }),
             columnHelper.accessor('createdAt', {
                 header: 'Ngày tạo',
@@ -33,17 +39,17 @@ const BlogCategoryTable = () => {
             columnHelper.accessor('action', {
                 header: 'Chức năng',
                 cell: ({ row }) => {
-                    const category = row?.original;
+                    const product = row?.original;
                     return (
                         <Box className='flex items-center gap-x-4'>
                             <CoreTableActionEdit
                                 callback={() =>
-                                    navigate(CMS_ROUTERS.blogCategory.list + '/' + category?._id)
+                                    navigate(CMS_ROUTERS.product.list + '/' + product?._id)
                                 }
                             />
                             <CoreTableActionDelete
-                                callback={() => handleDeleteBlogCategory(category?._id)}
-                                content='Bạn có muốn xoá danh mục này'
+                                callback={() => handleDeleteProduct(product?._id)}
+                                content='Bạn có muốn xoá sản phẩm này'
                             />
                         </Box>
                     );
@@ -54,15 +60,15 @@ const BlogCategoryTable = () => {
 
     return (
         <Box>
-            <BlogCategoryFilter />
+            <ProductFilter />
             <CoreTable
                 isPagination
                 columns={columns}
-                {...blogCategoryTableHandler}
-                data={blogCategoryTableHandler?.data}
+                {...productTableHandler}
+                data={productTableHandler?.data}
             />
         </Box>
     );
 };
 
-export default BlogCategoryTable;
+export default CategoryTable;

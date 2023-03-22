@@ -18,7 +18,7 @@ const EvaluateTable = () => {
     const columns = useMemo(() => {
         return [
             columnHelper.accessor('productId', {
-                header: 'Mã sản phẩm'
+                header: 'Mã đánh giá'
             }),
             columnHelper.accessor('user_name', {
                 header: 'Tên người gửi'
