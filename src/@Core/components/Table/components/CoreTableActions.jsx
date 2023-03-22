@@ -17,6 +17,7 @@ import { IconButton, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RateReviewRoundedIcon from '@mui/icons-material/RateReviewRounded';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 
 export const CoreTableActionDelete = ({ callback = () => {}, content = '' }) => {
     const confirm = useConfirm();
@@ -57,3 +58,14 @@ export const CoreTableActionView = ({ callback = () => {} }) => {
         </Tooltip>
     );
 };
+
+export const CoreTableActionChangeStatus= ({ callback = () => {} }) => {
+    return (
+        <Tooltip title='Thay đổi trạng thái'>
+            <IconButton color='primary' onClick={callback}>
+                <ShoppingCartRoundedIcon />
+            </IconButton>
+        </Tooltip>
+    );
+};
+

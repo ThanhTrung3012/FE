@@ -33,7 +33,7 @@ const CoreTableHeader = ({ table }) => {
             {table.getHeaderGroups().map(headerGroup => (
                 <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map(header => (
-                        <StyledTableCell key={header.id}>
+                        <StyledTableCell key={header.id} width={header.column.columnDef.width}>
                             {header.isPlaceholder
                                 ? null
                                 : flexRender(header.column.columnDef.header, header.getContext())}

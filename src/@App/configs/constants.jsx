@@ -31,7 +31,6 @@ export const CMS_ROUTERS = {
     },
     contact: {
         list: adminPath + '/contact',
-        detail: adminPath + '/contact/:id'
     },
     category: {
         list: adminPath + '/category',
@@ -47,7 +46,6 @@ export const CMS_ROUTERS = {
     },
     evaluate: {
         list: adminPath + '/evaluate',
-        detail: adminPath + '/evaluate/:id'
     },
     blog: {
         list: adminPath + '/blog',
@@ -56,5 +54,9 @@ export const CMS_ROUTERS = {
     product: {
         list: adminPath + '/product',
         detail: adminPath + '/product/:id'
+    },
+    order: {
+        list: adminPath + '/order',
+        detail: adminPath + '/order/:id',
     },
 };
