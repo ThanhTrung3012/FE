@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -40,12 +40,12 @@ const CoreTableBody = ({ table, loading }) => {
                 </TableRow>
             );
         }
-        return rows.map(row => (
-            <StyledTableRow key={row.id}>
-                {row.getVisibleCells().map(cell => {
+        return rows.map((row,index) => (
+            <StyledTableRow key={index}>
+                {row.getVisibleCells().map((cell,index) => {
                     return (
                         <TableCell
-                            key={cell.id}
+                            key={index}
                             {...{
                                 style: {
                                     width: cell.column.getSize()

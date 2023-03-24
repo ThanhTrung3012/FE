@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -21,7 +21,7 @@ export const WEB_ROUTERS = {
 };
 
 export const CMS_ROUTERS = {
-    doashboard: adminPath,
+    doashboard: adminPath + '/doashboard',
     auth: {
         login: adminPath + '/login'
     },

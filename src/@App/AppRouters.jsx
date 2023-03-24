@@ -6,14 +6,14 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành Trung
  * -----
  * HISTORY:
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
  */
 
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import React from 'react';
 
 const LazyLogin = React.lazy(() => import('@App/pages/Admin/Auth/Login'));
@@ -28,7 +28,11 @@ import AuthLayout from './components/Layout/AuthLayout';
 
 const appRouterConfigs = createBrowserRouter([
     {
-        path: '/cms',
+        path: 'cms',
+        element: <Navigate to={CMS_ROUTERS.auth.login}/>,
+    },
+    {
+        path: 'cms',
         element: <AuthLayout />,
         children: [
             {

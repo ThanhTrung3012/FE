@@ -1,10 +1,11 @@
-import CmsPageContent from '@App/components/Layout/CmsPageContent';
-import { CMS_ROUTERS } from '@App/configs/constants';
-import { Box, CircularProgress, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Box, CircularProgress, Typography } from '@mui/material';
+
 import UserForm from './components/UserForm';
 import useUserDetail from './hooks/useUserDetail';
+import CmsPageContent from '@App/components/Layout/CmsPageContent';
+import { CMS_ROUTERS } from '@App/configs/constants';
 
 const UserDetail = () => {
     const { isEdit, loading, user } = useUserDetail();

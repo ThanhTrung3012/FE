@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -102,9 +102,9 @@ const CoreSwiper = props => {
                     effect={effect}
                     speed={speed}
                 >
-                    {data.map(item => {
+                    {data.map((item,index) => {
                         return (
-                            <SwiperSlide>
+                            <SwiperSlide key={index}>
                                 <Box className='text-center p-4 cursor-pointer'>
                                     <Typography>{item.title}</Typography>
                                 </Box>

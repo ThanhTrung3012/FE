@@ -1,11 +1,11 @@
 import React from 'react';
+import { Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 import CmsPageContent from '@App/components/Layout/CmsPageContent';
-import { Link, useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 import UserTable from './components/CategoryTable';
 import CategoryProvider from './CategoryProvider';
-import { Button } from '@mui/material';
 
 const CategoryList = () => {
     const navigate = useNavigate();

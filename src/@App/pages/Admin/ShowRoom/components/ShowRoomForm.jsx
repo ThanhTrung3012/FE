@@ -4,12 +4,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Yup from '@Core/Helper/Yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 
 import CoreInput from '@Core/components/Input/CoreInput';
-import CoreInputFile from '@Core/components/Input/CoreInputFile';
 import { errorMessage, successMessage } from '@Core/Helper/Message';
 import { showRoomService } from '@App/services/showRoomService';
-import { useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 import CoreAutoComplete from '@Core/components/Input/CoreAutoComplete';
 

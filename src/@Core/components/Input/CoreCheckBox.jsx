@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -34,7 +34,7 @@ const CoreCheckBox = props => {
                             <Checkbox
                                 ref={ref}
                                 onChange={e => onChange(e.target.checked)}
-                                checked={value}
+                                checked={Boolean(value)}
                             />
                         }
                     />

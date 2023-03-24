@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 import BlogFilter from './BlogFilter';
 import { usePageContext } from '@App/components/Provider/PageProvider';
@@ -10,7 +11,6 @@ import {
     CoreTableActionDelete
 } from '@Core/components/Table/components/CoreTableActions';
 import { CMS_ROUTERS } from '@App/configs/constants';
-import moment from 'moment';
 
 const BlogTable = () => {
     const { blogTableHandler, handleDeleteBlog } = usePageContext();

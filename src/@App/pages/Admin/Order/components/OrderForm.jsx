@@ -4,10 +4,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Yup from '@Core/Helper/Yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 
 import { errorMessage, successMessage } from '@Core/Helper/Message';
 import { orderService } from '@App/services/orderService';
-import { useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 import CoreAutoComplete from '@Core/components/Input/CoreAutoComplete';
 
@@ -62,7 +62,7 @@ const BlogCategoryForm = ({ order }) => {
                 <Button
                     variant='contained'
                     color='info'
-                    onClick={() => navigate(CMS_ROUTERS.category.list)}
+                    onClick={() => navigate(CMS_ROUTERS.order.list)}
                 >
                     Quay lại
                 </Button>

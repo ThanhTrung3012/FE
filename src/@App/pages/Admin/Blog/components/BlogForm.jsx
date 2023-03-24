@@ -1,16 +1,16 @@
 import { LoadingButton } from '@mui/lab';
 import { Box, Button, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import Yup from '@Core/Helper/Yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 
 import CoreInput from '@Core/components/Input/CoreInput';
 import CoreInputFile from '@Core/components/Input/CoreInputFile';
 import { errorMessage, successMessage } from '@Core/Helper/Message';
 import { getOneWayUser } from '@Core/Helper/Session';
 import { blogService } from '@App/services/blogService';
-import { useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 import CoreCheckBox from '@Core/components/Input/CoreCheckBox';
 import useCategories from '../hooks/useCategories';
@@ -40,9 +40,11 @@ const BlogForm = props => {
         },
         resolver: yupResolver(
             Yup.object({
-                title: Yup.string().trim().required('Số điện thoại là bắt buộc'),
-                description: Yup.string().trim().required('Số điện thoại là bắt buộc'),
-                content: Yup.string().trim().required('Số điện thoại là bắt buộc')
+                title: Yup.string().trim().required('Tiêu đề bài viết là bắt buộc'),
+                description: Yup.string().trim().required('Mô tả bài viết là bắt buộc'),
+                content: Yup.string().trim().required('Nội dung bài viết là bắt buộc'),
+                image: Yup.string().required('Ảnh bài viết là bắt buộc'),
+                blog_category: Yup.string().required('Danh mục bài viết là bắt buộc'),
             })
         )
     });
@@ -124,7 +126,7 @@ const BlogForm = props => {
                     disabled={!isDirty}
                     className={!isDirty ? 'bg-gray-300' : ''}
                 >
-                    {isEdit ? 'Lưu chỉnh sửa' : 'Thêm người dùng'}
+                    {isEdit ? 'Lưu chỉnh sửa' : 'Thêm bài viết'}
                 </LoadingButton>
             </Box>
         </form>

@@ -6,19 +6,18 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
  * ----------	---	----------------------------------------------------------
  */
 
-import { has } from 'lodash';
 import middlewares from './Middleware';
 import createInstance from './Axios';
 
 class BaseService {
-    BASE_URL = 'http://localhost:6789/api';
+    BASE_URL = import.meta.env.VITE_API_URL;
 
     BASE_ENDPOINT = '/api';
 

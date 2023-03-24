@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -43,7 +43,7 @@ const CoreInputFile = props => {
         helperText,
         isPreview,
         multiple,
-        callback
+        images
     } = props;
     const inputRef = useRef();
 
@@ -62,7 +62,6 @@ const CoreInputFile = props => {
                 setFile(files);
                 const fileList = Object.entries(files).map(file => file[1]);
                 onChange(fileList);
-                callback(true)
             } else {
                 setFile(files[0]);
                 onChange(files[0]);
@@ -124,21 +123,40 @@ const CoreInputFile = props => {
                     className='hidden'
                 />
             </>
-            {isPreview && (
-                <Box className='mt-3 p-5 border max-w-[350px] bg-[#eee] rounded-md h-auto'>
-                    <Box className='border-4 rounded-sm border-white w-full'>
-                        <Image
-                            src={preview ?? value}
-                            showLoading={<CircularProgress />}
-                            duration={2000}
-                            easing='ease-in-out'
-                            sx={{ '& > img': { objectFit: 'cover' } }}
-                            height={250}
-                            errorIcon={<ImageNotSupportedIcon fontSize='large' />}
-                        />
+            {isPreview &&
+                (multiple && images.length > 0 ? (
+                    <Box className='flex gap-x-3'>
+                        {images.map((image, i) => (
+                            <Box className='mt-3 p-5 border max-w-[33.33333%] bg-[#eee] rounded-md h-auto' key={i}>
+                                <Box className='border-4 rounded-sm border-white w-full'>
+                                    <Image
+                                        src={image}
+                                        showLoading={<CircularProgress />}
+                                        duration={2000}
+                                        easing='ease-in-out'
+                                        sx={{ '& > img': { objectFit: 'cover' } }}
+                                        height={200}
+                                        errorIcon={<ImageNotSupportedIcon fontSize='large' />}
+                                    />
+                                </Box>
+                            </Box>
+                        ))}
                     </Box>
-                </Box>
-            )}
+                ) : (
+                    <Box className='mt-3 p-5 border max-w-[350px] bg-[#eee] rounded-md h-auto'>
+                        <Box className='border-4 rounded-sm border-white w-full'>
+                            <Image
+                                src={preview ?? value}
+                                showLoading={<CircularProgress />}
+                                duration={2000}
+                                easing='ease-in-out'
+                                sx={{ '& > img': { objectFit: 'cover' } }}
+                                height={250}
+                                errorIcon={<ImageNotSupportedIcon fontSize='large' />}
+                            />
+                        </Box>
+                    </Box>
+                ))}
         </Box>
     );
 };
@@ -153,6 +171,7 @@ CoreInputFile.defaultProps = {
     accept: null,
     isPreview: false,
     multiple: false,
+    images: []
 };
 CoreInputFile.propTypes = {
     className: PropTypes.string,
@@ -165,7 +184,7 @@ CoreInputFile.propTypes = {
     helperText: PropTypes.string,
     accept: PropTypes.string,
     isPreview: PropTypes.bool,
-    multiple: PropTypes.bool,
+    multiple: PropTypes.bool
 };
 
 export default React.memo(CoreInputFile);

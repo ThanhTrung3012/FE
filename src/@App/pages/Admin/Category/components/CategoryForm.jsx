@@ -4,16 +4,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Yup from '@Core/Helper/Yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { pickBy } from 'lodash';
+import { useNavigate } from 'react-router-dom';
 
 import CoreInput from '@Core/components/Input/CoreInput';
 import { errorMessage, successMessage } from '@Core/Helper/Message';
 import { categoryService } from '@App/services/categoryService';
-import { useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 import CoreAutoComplete from '@Core/components/Input/CoreAutoComplete';
-import { useRequest } from 'ahooks';
 import useCategoryOptions from '../hooks/useCategoryOptions';
-import { pickBy } from 'lodash';
 
 const CategoryForm = props => {
     const { category, isEdit } = props;

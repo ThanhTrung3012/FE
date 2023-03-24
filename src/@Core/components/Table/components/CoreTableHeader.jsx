@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -30,10 +30,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const CoreTableHeader = ({ table }) => {
     return (
         <TableHead>
-            {table.getHeaderGroups().map(headerGroup => (
-                <TableRow key={headerGroup.id}>
-                    {headerGroup.headers.map(header => (
-                        <StyledTableCell key={header.id} width={header.column.columnDef.width}>
+            {table.getHeaderGroups().map((headerGroup,index) => (
+                <TableRow key={index}>
+                    {headerGroup.headers.map((header,index) => (
+                        <StyledTableCell key={index} width={header.column.columnDef.width}>
                             {header.isPlaceholder
                                 ? null
                                 : flexRender(header.column.columnDef.header, header.getContext())}

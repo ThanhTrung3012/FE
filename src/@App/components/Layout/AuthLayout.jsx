@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành Trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -26,7 +26,7 @@ const AuthLayout = () => {
 
     useEffect(() => {
         if (token) {
-            navigate(CMS_ROUTERS.user.list);
+            navigate(CMS_ROUTERS.doashboard);
         }
     }, []);
 

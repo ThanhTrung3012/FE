@@ -3,7 +3,6 @@ import { useRequest } from 'ahooks';
 
 import { orderService } from '@App/services/orderService';
 import useCoreTable from '@Core/components/Table/hooks/useCoreTable';
-import { errorMessage, successMessage } from '@Core/Helper/Message';
 import PageProvider from '@App/components/Provider/PageProvider';
 
 const OrderProvider = props => {

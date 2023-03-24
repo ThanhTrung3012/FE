@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -59,15 +59,15 @@ const CoreTable = props => {
     return (
         <TableContainer className='relative' component={Paper}>
             <Table stickyHeader className='table' sx={{ minWidth: 1000 }}>
-                <CoreTableHeader table={table}></CoreTableHeader>
-                <CoreTableBody table={table} loading={loading}></CoreTableBody>
+                <CoreTableHeader table={table} />
+                <CoreTableBody table={table} loading={loading} />
             </Table>
             {loading && (
                 <Box className='absolute top-16 left-[50%] translate-x-[-50%]'>
                     <CircularProgress color='primary' size={40} />
                 </Box>
             )}
-            {isPagination && (
+            {isPagination && (  
                 <Box className='flex justify-end py-2'>
                     <Pagination
                         count={Math.ceil(total / pageSize) ?? 1}

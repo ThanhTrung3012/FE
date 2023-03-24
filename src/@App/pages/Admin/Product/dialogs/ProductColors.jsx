@@ -43,7 +43,7 @@ const ProductColors = ({ open, setType }) => {
             <DialogContent>
                 {fields.length > 0 ? (
                     fields.map((field, index) => (
-                        <Box className='flex items-center gap-x-6 pt-3'>
+                        <Box className='flex items-center gap-x-6 pt-3' key={index}>
                             <Box className='w-1/2'>
                                 <CoreInput
                                     control={control}

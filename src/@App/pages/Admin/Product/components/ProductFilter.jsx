@@ -40,7 +40,7 @@ const ProductFilter = () => {
                             control={control}
                             name='name'
                             size='small'
-                            label='Tên loại'
+                            label='Tên sản phẩm'
                             className='bg-white rounded-md'
                             isOutlined
                         />

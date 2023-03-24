@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -23,7 +23,7 @@ const CmsPageContent = props => {
     return (
         <Box>
             <Breadcrumbs separator={<NavigateNextIcon fontSize='small' />}>
-                {breadcrumbs}
+                {...breadcrumbs}
             </Breadcrumbs>
             <Card className='shadow-md h-full mt-6 min-h-[675px]'>
                 {title && (

@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -14,17 +14,18 @@
  */
 
 import React, { Suspense, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { AppBar, Avatar, Box, CircularProgress, Drawer, Toolbar } from '@mui/material';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { AppBar, Avatar, Box, CircularProgress, Drawer, Toolbar, Tooltip } from '@mui/material';
 
 import Leftmenu from '../Menu/Leftmenu/Leftmenu';
-import { getAuthToken } from '@Core/Helper/Session';
+import { getAuthToken, getOneWayUser } from '@Core/Helper/Session';
 import { CMS_ROUTERS } from '@App/configs/constants';
 
 const drawerWidth = 280;
 
 const CmsLayout = () => {
     const token = getAuthToken();
+    const user = getOneWayUser()
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,13 +38,15 @@ const CmsLayout = () => {
         <Box sx={{ display: 'flex' }}>
             <AppBar position='fixed' sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
                 <Toolbar className='flex justify-between'>
-                    <Box>
+                    <Link to={CMS_ROUTERS.doashboard}>
                         <img
                             src='https://onewaymobile.vn/images/config/logo-1_1663066621_1663318779.svg'
                             alt=''
                         />
-                    </Box>
-                    <Avatar alt='Remy Sharp' src='' />
+                    </Link>
+                    <Tooltip title={user?.name}>
+                        <Avatar alt='Remy Sharp' src={user?.avatar} className='object-cover'/>
+                    </Tooltip>
                 </Toolbar>
             </AppBar>
             <Box component='nav' sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
