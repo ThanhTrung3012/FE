@@ -4,11 +4,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Yup from '@Core/Helper/Yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 
 import CoreInput from '@Core/components/Input/CoreInput';
 import { errorMessage, successMessage } from '@Core/Helper/Message';
 import { blogCategoryService } from '@App/services/blogCategoryService';
-import { useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 
 const BlogCategoryForm = props => {

@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { useRequest } from 'ahooks';
 import { useParams } from 'react-router-dom';
 
 import { showRoomService } from '@App/services/showRoomService';
-import { useEffect } from 'react';
 
 const useShowRoomDetail = () => {
     const { id } = useParams();

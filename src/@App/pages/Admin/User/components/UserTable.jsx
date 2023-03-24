@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import UserFilter from './UserFilter';
 import { usePageContext } from '@App/components/Provider/PageProvider';
@@ -8,7 +9,6 @@ import {
     CoreTableActionEdit,
     CoreTableActionDelete
 } from '@Core/components/Table/components/CoreTableActions';
-import { useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 
 const UserTable = () => {

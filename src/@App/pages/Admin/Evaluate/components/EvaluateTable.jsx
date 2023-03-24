@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Box, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 
@@ -8,7 +9,6 @@ import {
     CoreTableActionDelete,
     CoreTableActionView
 } from '@Core/components/Table/components/CoreTableActions';
-import moment from 'moment';
 import useEvaluateDialog from '../hooks/UseEvaluateDialog';
 
 const EvaluateTable = () => {

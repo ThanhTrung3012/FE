@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -20,7 +20,7 @@ import { CMS_ROUTERS, WEB_ROUTERS } from './constants';
 const LazyHome = React.lazy(() => import('../pages/Web/Home'));
 
 // cms pages
-const LazyDashboard = React.lazy(() => import('../pages/Admin/Dashboard'));
+const LazyDashboard = React.lazy(() => import('../pages/Admin/Dashboard/index.jsx'));
 const LazyListUser = React.lazy(() => import('../pages/Admin/User/UserList'));
 const LazyUserDetail = React.lazy(() => import('../pages/Admin/User/UserDetail'));
 const LazyListCategory = React.lazy(() => import('../pages/Admin/Category/CategoryList'));

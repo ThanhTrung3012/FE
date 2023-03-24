@@ -1,11 +1,11 @@
 import React from 'react';
+import { Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 
 import CmsPageContent from '@App/components/Layout/CmsPageContent';
-import { Link, useNavigate } from 'react-router-dom';
 import { CMS_ROUTERS } from '@App/configs/constants';
 import UserTable from './components/ProductTable';
 import ProductProvider from './ProductProvider';
-import { Button } from '@mui/material';
 
 const ProductList = () => {
     const navigate = useNavigate();

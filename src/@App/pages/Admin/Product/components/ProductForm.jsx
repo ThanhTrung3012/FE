@@ -20,7 +20,6 @@ import CoreCheckBox from '@Core/components/Input/CoreCheckBox';
 
 const ProductForm = props => {
     const [type, setType] = useState(null);
-    const [changeImage, setChangeImage] = useState(false);
     const { product, isEdit } = props;
     const { categoryOptions, loading } = useCategoryOptions();
     const navigate = useNavigate();
@@ -155,7 +154,8 @@ const ProductForm = props => {
                         control={control}
                         name='images'
                         multiple
-                        callback={setChangeImage}
+                        images={product?.images}
+                        isPreview={isEdit}
                     />
                 </Box>
                 <Box className='mb-5 flex items-center gap-x-3'>

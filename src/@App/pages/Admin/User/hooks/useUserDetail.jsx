@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { useRequest } from 'ahooks';
 import { useParams } from 'react-router-dom';
 
 import { userService } from '@App/services/userService';
-import { useEffect } from 'react';
 
 const useUserDetail = () => {
     const { id } = useParams();

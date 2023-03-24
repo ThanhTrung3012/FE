@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành Trung
  * -----
  * HISTORY:
  * Date      	By	Comments

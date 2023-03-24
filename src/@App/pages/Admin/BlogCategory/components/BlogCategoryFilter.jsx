@@ -36,7 +36,7 @@ const BlogCategoryFilter = () => {
                             control={control}
                             name='name'
                             size='small'
-                            label='Tên loại'
+                            label='Tên danh mục'
                             className='bg-white rounded-md'
                             isOutlined
                         />

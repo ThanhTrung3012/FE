@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -15,6 +15,10 @@
 import { CMS_ROUTERS } from './constants';
 
 const menuConfigs = [
+    {
+        title: 'Thống kê',
+        path: CMS_ROUTERS.doashboard
+    },
     {
         title: 'Quản lý người dùng',
         path: CMS_ROUTERS.user.list

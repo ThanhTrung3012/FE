@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { useRequest } from 'ahooks';
 
 import { userService } from '@App/services/userService';
-import { useRequest } from 'ahooks';
 import useCoreTable from '@Core/components/Table/hooks/useCoreTable';
 import { errorMessage, successMessage } from '@Core/Helper/Message';
 import PageProvider from '@App/components/Provider/PageProvider';

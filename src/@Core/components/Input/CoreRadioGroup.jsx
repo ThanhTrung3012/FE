@@ -6,7 +6,7 @@
  * Last Modified:
  * Modified By:
  * -----
- * Copyright (c) ...
+ * Copyright (c) Đỗ Thành trung
  * -----
  * HISTORY:
  * Date      	By	Comments
@@ -59,7 +59,7 @@ const CoreRadioGroup = props => {
                                                 </Typography>
                                             }
                                             value={option?.value}
-                                            key={option?.key}
+                                            key={i}
                                             control={<Radio color='primary' />}
                                             disabled={option?.disabled ? option?.disabled : false}
                                         />
