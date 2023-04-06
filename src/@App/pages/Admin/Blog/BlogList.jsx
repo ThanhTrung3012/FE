@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import CmsPageContent from '@App/components/Layout/CmsPageContent';
 import { CMS_ROUTERS } from '@App/configs/constants';
-import UserTable from './components/BlogTable';
+import BlogTable from './components/BlogTable';
 import BlogProvider from './BlogProvider';
 
 const BlogList = () => {
@@ -16,7 +16,7 @@ const BlogList = () => {
             <CmsPageContent
                 title='Quản lý bài viết'
                 breadcrumbs={breadcrumbs}
-                content={<UserTable />}
+                content={<BlogTable />}
                 action={
                     <Button
                         variant='contained'

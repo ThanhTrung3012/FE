@@ -28,7 +28,7 @@ const BlogTable = () => {
                 header: 'Tác giả'
             }),
             columnHelper.accessor('createdAt', {
-                header: 'Ngàu đăng',
+                header: 'Ngày đăng',
                 cell: ({ row }) => {
                     return <Typography>{moment(row?.original?.createdAt).format('L')}</Typography>;
                 }

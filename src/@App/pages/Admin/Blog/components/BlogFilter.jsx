@@ -26,7 +26,6 @@ const BlogFilter = () => {
 
     const onSubmit = handleSubmit(async data => {
         try {
-            console.log(data);
             data = pickBy(data, v => v !== '');
             if (data.isPopular) {
                 data.isPopular = 1;
