@@ -17,7 +17,11 @@ const basePath = '/';
 const adminPath = '/cms';
 
 export const WEB_ROUTERS = {
-    home: basePath
+    home: basePath,
+    collection: {
+        index: basePath + '/collections',
+        router: basePath + '/collections/:id'
+    }
 };
 
 export const CMS_ROUTERS = {
@@ -30,7 +34,7 @@ export const CMS_ROUTERS = {
         detail: adminPath + '/user/:id'
     },
     contact: {
-        list: adminPath + '/contact',
+        list: adminPath + '/contact'
     },
     category: {
         list: adminPath + '/category',
@@ -45,7 +49,7 @@ export const CMS_ROUTERS = {
         detail: adminPath + '/show-room/:id'
     },
     evaluate: {
-        list: adminPath + '/evaluate',
+        list: adminPath + '/evaluate'
     },
     blog: {
         list: adminPath + '/blog',
@@ -57,6 +61,6 @@ export const CMS_ROUTERS = {
     },
     order: {
         list: adminPath + '/order',
-        detail: adminPath + '/order/:id',
-    },
+        detail: adminPath + '/order/:id'
+    }
 };

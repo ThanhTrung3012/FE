@@ -23,8 +23,8 @@ export const NextButton = () => {
 
     return (
         <div
-            className='absolute cursor-pointer bg-white top-[50%] right-0 
-            z-[999] w-[40px] h-[40px] flex justify-center items-center rounded-full border border-black'
+            className='absolute cursor-pointer bg-white top-[50%] right-[-35px] 
+            z-[999] w-[60px] h-[60px] flex justify-start items-center rounded-full border border-gray-400 opacity-30 hover:opacity-100'
             onClick={() => swiper.slideNext()}
         >
             <ArrowForwardIosRoundedIcon />
@@ -37,8 +37,8 @@ export const PrevButton = () => {
 
     return (
         <div
-            className='absolute cursor-pointer bg-white top-[50%] left-0 
-            z-[999] w-[40px] h-[40px] flex justify-center items-center rounded-full border border-black'
+            className='absolute cursor-pointer bg-white top-[50%] left-[-35px]
+            z-[999] w-[60px] h-[60px] flex justify-end items-center rounded-full border border-gray-400 opacity-30 hover:opacity-100'
             onClick={() => swiper.slidePrev()}
         >
             <ArrowBackIosRoundedIcon />

@@ -35,6 +35,9 @@ const defaultTheme = createTheme({
             dark: '#424242',
             contrastText: '#fff',
         },
+        orange:{
+            main:'#EF6837'
+        }
     },
     typography:{
         h1: {
@@ -47,6 +50,11 @@ const defaultTheme = createTheme({
         },
         h5:{
             fontSize:'1.1rem'
+        },
+        subtitle1: {
+            fontWeight:'500',
+            fontSize:'15px',
+            color:'#fff',
         }
     },
 })
