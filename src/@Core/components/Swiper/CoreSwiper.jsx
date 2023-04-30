@@ -63,7 +63,7 @@ const CoreSwiper = props => {
                 {...restProps}
             >
                 {data.map((item, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide key={index} className='rounded-t-md overflow-hidden'>
                         <LazyLoad
                             height={LazyLoadHeight}
                             once={LazyLoadOnce}
@@ -101,6 +101,7 @@ const CoreSwiper = props => {
                     modules={modules}
                     effect={effect}
                     speed={speed}
+                    className='bg-white'
                 >
                     {data.map((item,index) => {
                         return (
@@ -119,7 +120,7 @@ const CoreSwiper = props => {
 
 CoreSwiper.propTypes = {
     data: PropTypes.array.isRequired,
-    SlideItem: PropTypes.element,
+    SlideItem: PropTypes.func,
     imgTagClassName: PropTypes.string,
     isImageOnly: PropTypes.bool,
     spaceBetween: PropTypes.number,
@@ -132,7 +133,8 @@ CoreSwiper.propTypes = {
     LazyLoadOnce: PropTypes.bool,
     LazyLoadOffset: PropTypes.number,
     isShowButton: PropTypes.bool,
-    isGallery: PropTypes.bool
+    isGallery: PropTypes.bool,
+    loop: PropTypes.bool,
 };
 
 export default React.memo(CoreSwiper);

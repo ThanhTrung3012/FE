@@ -15,11 +15,14 @@
 
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import Header from './Web/Header';
+import Footer from './Web/Footer';
 
 const WebLayout = () => {
     return (
-        <div>
+        <Box className='bg-[#F5F5F7] min-h-screen'>
+            <Header />
             <Suspense
                 fallback={
                     <div className='flex justify-center items-center h-screen w-screen'>
@@ -27,9 +30,12 @@ const WebLayout = () => {
                     </div>
                 }
             >
-                <Outlet />
+                <Box className='w-[1320px] px-[10px] mx-auto pt-[80px]'>
+                    <Outlet />
+                </Box>
             </Suspense>
-        </div>
+            <Footer />
+        </Box>
     );
 };
 

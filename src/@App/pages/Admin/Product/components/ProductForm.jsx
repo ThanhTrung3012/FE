@@ -35,7 +35,7 @@ const ProductForm = props => {
             name: product?.name ?? '',
             category: product?.category ?? '',
             discount: product?.discount ?? '',
-            description: product?.description ?? null,
+            description: product?.description ?? '',
             images: product?.images ?? [],
             colors: product?.colors ?? [],
             options: product?.options ?? [],

@@ -18,6 +18,7 @@ import { CMS_ROUTERS, WEB_ROUTERS } from './constants';
 
 // web pages
 const LazyHome = React.lazy(() => import('../pages/Web/Home'));
+const LazyCollections = React.lazy(() => import('../pages/Web/Collections'));
 
 // cms pages
 const LazyDashboard = React.lazy(() => import('../pages/Admin/Dashboard/index.jsx'));
@@ -46,7 +47,11 @@ export const webRouterConfigs = [
     {
         path: WEB_ROUTERS.home,
         element: <LazyHome />
-    }
+    },
+    {
+        path: WEB_ROUTERS.collection.router,
+        element: <LazyCollections />
+    },
 ];
 
 export const cmsRouterConfigs = [
