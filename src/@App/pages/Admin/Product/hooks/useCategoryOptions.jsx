@@ -13,7 +13,7 @@ const useCategoryOptions = () => {
     });
 
     useEffect(() => {
-        getCategory()
+        getCategory({page_size:1000000})
     }, []);
 
     return { categoryOptions: data?.data, loading };

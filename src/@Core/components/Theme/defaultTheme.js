@@ -36,7 +36,7 @@ const defaultTheme = createTheme({
             contrastText: '#fff',
         },
         orange:{
-            main:'#EF6837'
+            main:'#EF6837 !important'
         }
     },
     typography:{

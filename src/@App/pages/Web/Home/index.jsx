@@ -64,9 +64,9 @@ const Home = () => {
                 <CoreSwiper 
                     data={arrays}
                     SlideItem={Product}
-                    slidesPerView={4}
+                    slidesPerView={5}
                     isShowButton
-                    spaceBetween={10}
+                    spaceBetween={5}
                     loop
                 />
             </div>

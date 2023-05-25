@@ -4,9 +4,16 @@ module.exports = {
     theme: {
         extend: {
             fontSize: {
+                11: '11px !important',
                 12: '12px !important',
                 13: '13px !important',
-                14: '14px !important'
+                14: '14px !important',
+                15: '15px !important',
+                16: '16px !important',
+                17: '17px !important',
+                18: '18px !important',
+                19: '19px !important',
+                20: '20px !important',
             },
             fontWeight: {
                 bold: 'bold !important',

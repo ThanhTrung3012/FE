@@ -19,8 +19,30 @@ const adminPath = '/cms';
 export const WEB_ROUTERS = {
     home: basePath,
     collection: {
-        index: basePath + '/collections',
+        index: basePath + 'collections',
         router: basePath + '/collections/:id'
+    },
+    product: {
+        index: basePath + 'product',
+        router: basePath + '/product/:id'
+    },
+    cart: {
+        index: basePath + 'cart',
+        router: basePath + 'cart'
+    },
+    staticPage: {
+        contact: {
+            router: basePath + 'contact/:page',
+            introduction: basePath + 'contact/introduction',
+            shops: basePath + 'contact/shops',
+            contact: basePath + 'contact/lien-he'
+        },
+        policy: {
+            router: basePath + 'policy/:page',
+            purchase: basePath + 'policy/chinh-sach-mua-hang',
+            guarantee: basePath + 'policy/chinh-sach-bao-hanh',
+            transport: basePath + 'policy/chinh-sach-van-chuyen'
+        }
     }
 };
 
