@@ -19,12 +19,14 @@ import React from 'react';
 const LazyLogin = React.lazy(() => import('@App/pages/Admin/Auth/Login'));
 
 import { webRouterConfigs, cmsRouterConfigs } from '@App/configs/routerConfigs';
-import { CMS_ROUTERS } from '@App/configs/constants';
+import { CMS_ROUTERS, WEB_ROUTERS } from '@App/configs/constants';
 
 import Page404 from './pages/Errors/Page404';
 import WebLayout from './components/Layout/WebLayout';
 import CMSLayout from './components/Layout/CMSLayout';
 import AuthLayout from './components/Layout/AuthLayout';
+import Contact from './pages/Web/Static/Contact';
+import Policy from './pages/Web/Static/Policy';
 
 const appRouterConfigs = createBrowserRouter([
     {
@@ -55,6 +57,14 @@ const appRouterConfigs = createBrowserRouter([
                 element: <Page404 />
             }
         ]
+    },
+    {
+        path: WEB_ROUTERS.staticPage.contact.router,
+        element:<Contact />
+    },
+    {
+        path: WEB_ROUTERS.staticPage.policy.router,
+        element:<Policy />
     },
     {
         path: 'cms',

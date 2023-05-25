@@ -30,7 +30,7 @@ const WebLayout = () => {
                     </div>
                 }
             >
-                <Box className='w-[1320px] px-[10px] mx-auto pt-[80px]'>
+                <Box className='w-[1220px] px-[10px] mx-auto pt-[80px]'>
                     <Outlet />
                 </Box>
             </Suspense>

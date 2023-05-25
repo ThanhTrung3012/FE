@@ -4,18 +4,19 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Link } from 'react-router-dom';
+import { WEB_ROUTERS } from '@App/configs/constants';
 
 const Footer = () => {
     const contacts = [
-        { label: 'Giới thiệu công ty', path: '/' },
-        { label: 'Hệ thống cửa hàng ', path: '/' },
-        { label: 'Liên hệ với chúng tôi', path: '/' }
+        { label: 'Giới thiệu công ty', path: WEB_ROUTERS.staticPage.contact.introduction },
+        { label: 'Hệ thống cửa hàng ', path: WEB_ROUTERS.staticPage.contact.shops },
+        { label: 'Liên hệ với chúng tôi', path: WEB_ROUTERS.staticPage.contact.contact }
     ];
 
     const policies = [
-        { label: 'Chính sách mua hàng', path: '/' },
-        { label: 'Chính sách bảo hành', path: '/' },
-        { label: 'Chính sách vận chuyển', path: '/' }
+        { label: 'Chính sách mua hàng', path: WEB_ROUTERS.staticPage.policy.purchase },
+        { label: 'Chính sách bảo hành', path: WEB_ROUTERS.staticPage.policy.guarantee },
+        { label: 'Chính sách vận chuyển', path: WEB_ROUTERS.staticPage.policy.transport }
     ];
 
     const infos = [
@@ -25,7 +26,7 @@ const Footer = () => {
     ];
 
     return (
-        <div className='shadow-xl bg-white mt-10 py-6'>
+        <div className='shadow-xl bg-white mt-10 py-6' style={{boxShadow: '0 -5px 5px -5px rgba(0,0,0,0.1)'}}>
             <div className='w-[1320px] mx-auto'>
                 <div className='flex justify-between'>
                     <div className='flex flex-col gap-2'>

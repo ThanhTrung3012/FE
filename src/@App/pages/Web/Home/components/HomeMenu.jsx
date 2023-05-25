@@ -12,7 +12,7 @@ const HomeMenu = () => {
                 {menus.map((item, i) => (
                     <div key={i} className='menu-child px-3 z-50'>
                         <Link
-                            to='/'
+                            to='/collections/1'
                             className='flex justify-between items-center hover:text-[#F06837]'
                         >
                             <div className='py-2 flex items-center gap-x-1'>
@@ -29,7 +29,7 @@ const HomeMenu = () => {
                                             key={i}
                                             className='border-r-[1px] border-gray-200 min-h-full pl-4'
                                         >
-                                            <Link to='/' className='font-bold'>
+                                            <Link to='/collections/1' className='font-bold'>
                                                 {item?.title}
                                             </Link>
                                             {item?.chidrens &&
@@ -37,7 +37,7 @@ const HomeMenu = () => {
                                                 item?.chidrens.map((item, i) => (
                                                     <div key={i} className='pb-2'>
                                                         <Link
-                                                            to='/'
+                                                            to='/collections/1'
                                                             className='text-14 text-[#999] hover:text-[#F06837]'
                                                         >
                                                             {item?.title}

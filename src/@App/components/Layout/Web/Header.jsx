@@ -4,15 +4,19 @@ import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { WEB_ROUTERS } from '@App/configs/constants';
 
 const Header = () => {
     return (
         <Box className='fixed top-0 left-0 right-0 bg-[#F06837] min-h-[50px] z-[1000]'>
             <Box className='w-[1220px] mx-auto px-[10px] py-2 flex items-center justify-between'>
-                <img
-                    src='https://onewaymobile.vn/images/config/logo-1_1663066621_1663318779.svg'
-                    alt=''
-                />
+                <Link to='/'>
+                    <img
+                        src='https://onewaymobile.vn/images/config/logo-1_1663066621_1663318779.svg'
+                        alt=''
+                    />
+                </Link>
                 <Box className='border border-white rounded-xl px-6 flex h-[45px] items-center gap-x-3 cursor-pointer'>
                     <img src='https://onewaymobile.vn/images/menu.svg' alt='' />
                     <Typography variant='subtitle1'>Danh mục</Typography>
@@ -49,7 +53,7 @@ const Header = () => {
                     <Box className='h-full bg-[#ffffff33] grid place-items-center w-[45px] rounded-full'>
                         <LocalMallOutlinedIcon className='text-white' />
                     </Box>
-                    <Box className='pl-3'>
+                    <Link to={WEB_ROUTERS.cart.router} className='pl-3'>
                         <Typography className='text-13'>Giỏ hàng</Typography>
                         <Box className='flex items-center gap-x-1'>
                             <Typography className='text-14 font-semibold'>Sản phẩm</Typography>
@@ -57,7 +61,7 @@ const Header = () => {
                                 0
                             </Box>
                         </Box>
-                    </Box>
+                    </Link>
                 </Box>
             </Box>
         </Box>

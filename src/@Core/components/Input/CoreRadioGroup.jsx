@@ -54,7 +54,7 @@ const CoreRadioGroup = props => {
                                     return (
                                         <FormControlLabel
                                             label={
-                                                <Typography variant='body2'>
+                                                <Typography variant='body2' className='text-15'>
                                                     {option?.label}
                                                 </Typography>
                                             }
