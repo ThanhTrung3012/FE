@@ -43,7 +43,7 @@ const BlogForm = props => {
                 title: Yup.string().trim().required('Tiêu đề bài viết là bắt buộc'),
                 description: Yup.string().trim().required('Mô tả bài viết là bắt buộc'),
                 content: Yup.string().trim().required('Nội dung bài viết là bắt buộc'),
-                image: Yup.string().required('Ảnh bài viết là bắt buộc'),
+                // image: Yup.string().required('Ảnh bài viết là bắt buộc'),
                 blog_category: Yup.string().required('Danh mục bài viết là bắt buộc'),
             })
         )

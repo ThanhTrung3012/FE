@@ -94,5 +94,9 @@ export const CMS_ROUTERS = {
     order: {
         list: adminPath + '/order',
         detail: adminPath + '/order/:id'
+    },
+    banner: {
+        list: adminPath + '/banner',
+        detail: adminPath + '/banner/:id'
     }
 };

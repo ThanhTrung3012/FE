@@ -46,6 +46,8 @@ const LazyListBlog = React.lazy(() => import('../pages/Admin/Blog/BlogList'));
 const LazyBlogDetail = React.lazy(() => import('../pages/Admin/Blog/BlogDetail'));
 const LazyListProduct = React.lazy(() => import('../pages/Admin/Product/ProductList'));
 const LazyProductDetail = React.lazy(() => import('../pages/Admin/Product/ProductDetail'));
+const LazyBannerList = React.lazy(() => import('../pages/Admin/Banner/BannerList'));
+const LazyBannerDetail = React.lazy(() => import('../pages/Admin/Banner/BannerDetail'));
 
 export const webRouterConfigs = [
     {
@@ -69,7 +71,7 @@ export const webRouterConfigs = [
         children: [
             { path: '', element: <LazyBlog /> },
             { path: ':slug', element: <LazyBlog /> },
-            { path: 'detail/:slug', element: <LazyBlogDetailWeb /> },
+            { path: 'detail/:slug', element: <LazyBlogDetailWeb /> }
         ]
     }
 ];
@@ -176,6 +178,19 @@ export const cmsRouterConfigs = [
             {
                 path: ':id',
                 element: <LazyProductDetail />
+            }
+        ]
+    },
+    {
+        path: CMS_ROUTERS.banner.list,
+        children: [
+            {
+                path: '',
+                element: <LazyBannerList />
+            },
+            {
+                path: ':id',
+                element: <LazyBannerDetail />
             }
         ]
     }

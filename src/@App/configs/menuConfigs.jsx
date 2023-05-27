@@ -55,6 +55,10 @@ const menuConfigs = [
         title: 'Quản lý đơn hàng',
         path: CMS_ROUTERS.order.list
     },
+    {
+        title: 'Quản lý banner',
+        path: CMS_ROUTERS.banner.list
+    },
 ];
 
 export default menuConfigs;

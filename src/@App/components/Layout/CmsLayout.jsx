@@ -70,7 +70,7 @@ const CmsLayout = () => {
                 <Box className='flex flex-col h-full' sx={{ minHeight: `calc(100vh - 200px)` }}>
                     <Suspense
                         fallback={
-                            <div className='flex justify-center items-center h-screen w-screen'>
+                            <div className='flex justify-center items-center h-screen'>
                                 <CircularProgress />
                             </div>
                         }

@@ -34,7 +34,7 @@ const AuthLayout = () => {
         <div>
             <Suspense
                 fallback={
-                    <div className='flex justify-center items-center h-screen w-screen'>
+                    <div className='flex justify-center items-center'>
                         <CircularProgress />
                     </div>
                 }

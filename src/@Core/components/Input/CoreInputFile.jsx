@@ -147,7 +147,7 @@ const CoreInputFile = props => {
                         <Box className='border-4 rounded-sm border-white w-full'>
                             <Image
                                 src={preview ?? value}
-                                showLoading={<CircularProgress />}
+                                // showLoading={<CircularProgress />}
                                 duration={2000}
                                 easing='ease-in-out'
                                 sx={{ '& > img': { objectFit: 'cover' } }}
