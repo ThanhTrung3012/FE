@@ -27,6 +27,7 @@ import CMSLayout from './components/Layout/CMSLayout';
 import AuthLayout from './components/Layout/AuthLayout';
 import Contact from './pages/Web/Static/Contact';
 import Policy from './pages/Web/Static/Policy';
+import Info from './pages/Web/Static/Info';
 
 const appRouterConfigs = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const appRouterConfigs = createBrowserRouter([
     {
         path: WEB_ROUTERS.staticPage.policy.router,
         element:<Policy />
+    },
+    {
+        path: WEB_ROUTERS.staticPage.info.router,
+        element:<Info />
     },
     {
         path: 'cms',

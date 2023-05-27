@@ -19,7 +19,6 @@ export const menus = [
     { icon: 'https://onewaymobile.vn/images/menus/dienthoai_1663642681.svg', title: 'Điện thoại' },
     { icon: 'https://onewaymobile.vn/images/menus/dienthoai_1663642681.svg', title: 'Điện thoại' },
     { icon: 'https://onewaymobile.vn/images/menus/dienthoai_1663642681.svg', title: 'Điện thoại' },
-    { icon: 'https://onewaymobile.vn/images/menus/dienthoai_1663642681.svg', title: 'Điện thoại' }
 ];
 
 export const sliders = [

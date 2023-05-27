@@ -4,6 +4,7 @@ import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRig
 
 import { menus } from '../data';
 import { Link } from 'react-router-dom';
+import BlogMenuIcon from './icons/BlogMenuIcon';
 
 const HomeMenu = () => {
     return (
@@ -51,6 +52,18 @@ const HomeMenu = () => {
                         ) : null}
                     </div>
                 ))}
+                <div className='px-3 z-50'>
+                    <Link
+                        to='/blog'
+                        className='flex justify-between items-center hover:text-[#F06837]'
+                    >
+                        <div className='py-2 flex items-center gap-x-1'>
+                            <BlogMenuIcon />
+                            <Typography>Bài viết</Typography>
+                        </div>
+                        <KeyboardArrowRightOutlinedIcon />
+                    </Link>
+                </div>
             </div>
             <div
                 className='menu-background w-screen fixed inset-0 

@@ -44,10 +44,10 @@ const Header = () => {
                     <Box className='h-full bg-[#ffffff33] grid place-items-center w-[45px] rounded-full'>
                         <PlaceOutlinedIcon className='text-white' />
                     </Box>
-                    <Box className='pl-3'>
+                    <Link to={WEB_ROUTERS.staticPage.contact.shops} className='pl-3'>
                         <Typography className='text-13'>Chỉ đường đến</Typography>
                         <Typography className='text-14 font-semibold'>Showroom</Typography>
-                    </Box>
+                    </Link>
                 </Box>
                 <Box className='flex items-center h-[45px] text-white'>
                     <Box className='h-full bg-[#ffffff33] grid place-items-center w-[45px] rounded-full'>

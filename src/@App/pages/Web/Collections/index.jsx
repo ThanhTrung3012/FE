@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { categories, marks } from './data';
 import { Link } from 'react-router-dom';
 import { Slider, styled } from '@mui/material';
@@ -19,6 +19,10 @@ const SliderStyle = styled(Slider)({
 const Collections = () => {
     const arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const [value, setValue] = React.useState([5000000, 10000000]);
+
+    useEffect(() => {
+        window.scrollTo({ behavior: 'smooth', top: 0 });
+    }, []);
 
     const handleChange = (_, v) => {
         setValue(v);

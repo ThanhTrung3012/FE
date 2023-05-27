@@ -1,5 +1,5 @@
 import { Rating } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { product } from '../Collections/data';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import clsx from 'clsx';
@@ -16,6 +16,10 @@ const ProductPage = () => {
     const [value, setValue] = useState(2);
     const arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const [mainImg, setMainImg] = useState(product?.image);
+
+    useEffect(() => {
+        window.scrollTo({ behavior: 'smooth', top: 0 });
+    }, []);
 
     const areaOptions = [
         { label: 'Hà Nội', value: 'ha-noi' },

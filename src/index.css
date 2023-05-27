@@ -31,15 +31,21 @@ input::placeholder {
 
 .menu:hover .menu-background {
     opacity: 1;
-    z-index: 1 !important;
+    z-index: 10 !important;
+    display: block;
 }
 
 .menu-background:hover {
     opacity: 0 !important;
+    visibility: hidden !important;
 }
 
 .menu-child:hover > .menu-child-list {
     display: block !important;
+}
+
+.MuiPaper-elevation1::before{
+    height: 0 !important;
 }
 
 input::placeholder{

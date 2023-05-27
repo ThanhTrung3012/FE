@@ -20,9 +20,9 @@ const Footer = () => {
     ];
 
     const infos = [
-        { label: 'Giải đáp mua hàng Online', path: '/' },
-        { label: 'Phương thức thanh toán', path: '/' },
-        { label: 'Tuyển dụng', path: '/' }
+        { label: 'Giải đáp mua hàng Online', path: WEB_ROUTERS.staticPage.info.question },
+        { label: 'Phương thức thanh toán', path: WEB_ROUTERS.staticPage.info.payment },
+        { label: 'Tuyển dụng', path: WEB_ROUTERS.staticPage.info.recruitment }
     ];
 
     return (
@@ -32,19 +32,19 @@ const Footer = () => {
                     <div className='flex flex-col gap-2'>
                         <h3 className='mb-2 font-bold'>Thông tin liên hệ</h3>
                         {contacts.map((contact, index) => (
-                            <Link to={contact.path}>{contact.label}</Link>
+                            <Link key={index} to={contact.path}>{contact.label}</Link>
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h3 className='mb-2 font-bold'>Chính sách</h3>
                         {policies.map((policy, index) => (
-                            <Link to={policy.path}>{policy.label}</Link>
+                            <Link key={index} to={policy.path}>{policy.label}</Link>
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h3 className='mb-2 font-bold'>Thông tin khác</h3>
                         {infos.map((info, index) => (
-                            <Link to={info.path}>{info.label}</Link>
+                            <Link key={index} to={info.path}>{info.label}</Link>
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>

@@ -20,6 +20,7 @@ import Header from './Web/Header';
 import Footer from './Web/Footer';
 
 const WebLayout = () => {
+
     return (
         <Box className='bg-[#F5F5F7] min-h-screen'>
             <Header />

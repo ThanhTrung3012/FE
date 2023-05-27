@@ -4,12 +4,20 @@ import { useParams } from 'react-router-dom';
 import Introduction from './Introduction';
 import Shops from './Shops';
 import Contact from './Contact';
+import { WEB_ROUTERS } from '@App/configs/constants';
 
 const ContactWapper = () => {
     const {page} = useParams()
 
+    const menus = [
+        {label: 'Giới thiệu công ty',path: WEB_ROUTERS.staticPage.contact.introduction},
+        {label: 'Hệ thống cửa hàng',path: WEB_ROUTERS.staticPage.contact.shops},
+        {label: 'Liên hệ với chúng tôi',path: WEB_ROUTERS.staticPage.contact.contact},
+    ]
+
     return (
         <StaticPageLayout
+            menus={menus}
             content={
                 <div>
                     {page === 'introduction' && <Introduction />}

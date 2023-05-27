@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import Helmet from '@Core/components/Helmet';
 import HomeMenu from './components/HomeMenu';
@@ -12,6 +12,9 @@ import HomeSection from './components/HomeSection';
 
 const Home = () => {
     const arrays = [1,2,3,4,5,6,7,8,9,10];
+    useEffect(() => {
+        window.scrollTo({ behavior: 'smooth', top: 0 });
+    }, []);
 
     return (
         <Helmet pageTitle='OneWay Mobile' pageDescription='Wellcom to my app'>

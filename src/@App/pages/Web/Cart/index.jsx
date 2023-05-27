@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import AddIcon from '@mui/icons-material/Add';
@@ -12,6 +12,9 @@ import CoreInput from '@Core/components/Input/CoreInput';
 
 const Cart = () => {
     const { control } = useForm();
+    useEffect(() => {
+        window.scrollTo({ behavior: 'smooth', top: 0 });
+    }, []);
 
     const sexs = [
         { label: 'Nam', value: 'nam' },

@@ -20,15 +20,19 @@ export const WEB_ROUTERS = {
     home: basePath,
     collection: {
         index: basePath + 'collections',
-        router: basePath + '/collections/:id'
+        router: basePath + '/collections/:slug'
     },
     product: {
         index: basePath + 'product',
-        router: basePath + '/product/:id'
+        router: basePath + '/product/:slug'
     },
     cart: {
         index: basePath + 'cart',
         router: basePath + 'cart'
+    },
+    blog: {
+        index: basePath + 'blog',
+        router: basePath + 'blog',
     },
     staticPage: {
         contact: {
@@ -42,7 +46,13 @@ export const WEB_ROUTERS = {
             purchase: basePath + 'policy/chinh-sach-mua-hang',
             guarantee: basePath + 'policy/chinh-sach-bao-hanh',
             transport: basePath + 'policy/chinh-sach-van-chuyen'
-        }
+        },
+        info: {
+            router: basePath + 'info/:page',
+            question: basePath + 'info/cau-hoi-thuong-gap',
+            payment: basePath + 'info/phuong-thuc-thanh-toan',
+            recruitment: basePath + 'info/tuyen-dung'
+        },
     }
 };
 

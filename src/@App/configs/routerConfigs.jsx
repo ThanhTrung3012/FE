@@ -21,6 +21,8 @@ const LazyHome = React.lazy(() => import('../pages/Web/Home'));
 const LazyCollections = React.lazy(() => import('../pages/Web/Collections'));
 const LazyProduct = React.lazy(() => import('../pages/Web/Product'));
 const LazyCart = React.lazy(() => import('../pages/Web/Cart'));
+const LazyBlog = React.lazy(() => import('../pages/Web/Blog'));
+const LazyBlogDetailWeb = React.lazy(() => import('../pages/Web/Blog/Detail'));
 
 // cms pages
 const LazyDashboard = React.lazy(() => import('../pages/Admin/Dashboard/index.jsx'));
@@ -62,6 +64,14 @@ export const webRouterConfigs = [
         path: WEB_ROUTERS.cart.router,
         element: <LazyCart />
     },
+    {
+        path: WEB_ROUTERS.blog.router,
+        children: [
+            { path: '', element: <LazyBlog /> },
+            { path: ':slug', element: <LazyBlog /> },
+            { path: 'detail/:slug', element: <LazyBlogDetailWeb /> },
+        ]
+    }
 ];
 
 export const cmsRouterConfigs = [
