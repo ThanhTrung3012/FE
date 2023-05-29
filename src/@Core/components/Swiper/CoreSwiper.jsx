@@ -62,7 +62,7 @@ const CoreSwiper = props => {
                 thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                 {...restProps}
             >
-                {data.map((item, index) => (
+                {data?.map((item, index) => (
                     <SwiperSlide key={index} className='rounded-t-md overflow-hidden'>
                         <LazyLoad
                             height={LazyLoadHeight}

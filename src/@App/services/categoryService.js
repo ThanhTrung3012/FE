@@ -12,6 +12,11 @@ class Category extends BaseService {
         const endpoint = this.BASE_ENDPOINT + '/get-options/' + id;
         return this.request.get(endpoint);
     }
+
+    getMenus = () => {
+        const endpoint = this.BASE_ENDPOINT + '/menu'
+        return this.request.get(endpoint);
+    }
 }
 
 export const categoryService = new Category();

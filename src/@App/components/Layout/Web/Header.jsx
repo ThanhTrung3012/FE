@@ -1,15 +1,33 @@
-import { Box, Typography } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { WEB_ROUTERS } from '@App/configs/constants';
+import { useDebounce, useRequest, useUpdateEffect } from 'ahooks';
+import { productService } from '@App/services/productService';
+import { useState } from 'react';
+import handlePrice from '@Core/Helper/Price';
 
 const Header = () => {
+    const [keyword, setKeyword] = useState('');
+    const debouncedKeyword = useDebounce(keyword, { wait: 500 });
+    const {
+        data: products,
+        loading,
+        run: getProducts
+    } = useRequest(productService.searchProduct, {
+        manual: true
+    });
+
+    useUpdateEffect(() => {
+        getProducts(keyword);
+    }, [debouncedKeyword]);
+
     return (
-        <Box className='fixed top-0 left-0 right-0 bg-[#F06837] min-h-[50px] z-[1000]'>
+        <Box className='fixed top-0 left-0 right-0 bg-[#F06837] min-h-[50px] z-[1000000]'>
             <Box className='w-[1220px] mx-auto px-[10px] py-2 flex items-center justify-between'>
                 <Link to='/'>
                     <img
@@ -21,15 +39,50 @@ const Header = () => {
                     <img src='https://onewaymobile.vn/images/menu.svg' alt='' />
                     <Typography variant='subtitle1'>Danh mục</Typography>
                 </Box>
-                <Box className='bg-white rounded-xl relative w-[455px] h-[45px] overflow-hidden focus-visible:outline-none'>
-                    <input
-                        placeholder='Bạn cần tìm gì? iPhone,iPad, Macbook...?'
-                        className='min-h-full absolute top-0 bottom-0 pl-4 w-full pr-10'
-                    />
-                    <SearchIcon
-                        className='absolute top-1/2 translate-y-[-50%] right-2 cursor-pointer'
-                        color='error'
-                    />
+                <Box className='relative'>
+                    <div className='bg-white rounded-xl relative w-[455px] h-[45px] overflow-hidden focus-visible:outline-none'>
+                        <input
+                            placeholder='Bạn cần tìm gì? iPhone,iPad, Macbook...?'
+                            className='min-h-full absolute top-0 bottom-0 pl-4 w-full pr-10'
+                            value={keyword}
+                            onChange={e => setKeyword(e.target.value)}
+                        />
+                        <SearchIcon
+                            className='absolute top-1/2 translate-y-[-50%] right-2 cursor-pointer'
+                            color='error'
+                        />
+                    </div>
+                    {keyword && products?.data?.length > 0 && (
+                        <div className='absolute left-0 right-0 top-[45px] border border-[#F06837] space-y-1 bg-white p-3 w-full z-50 max-h-[400px] overflow-y-scroll'>
+                            {loading ? (
+                                <div className='flex justify-center'>
+                                    <CircularProgress />
+                                </div>
+                            ) : (
+                                products?.data?.map(product => (
+                                    <div key={product?._id} className='hover:bg-gray-100'>
+                                        <Link
+                                            to={WEB_ROUTERS.product.index + '/' + product._id}
+                                            className='flex'
+                                        >
+                                            <img
+                                                src={product?.images?.[0]}
+                                                className='w-[60px] h-[60px] border border-[#f6bea9]'
+                                            />
+                                            <div className='pl-2'>
+                                                <h3 className='text-16 font-bold'>
+                                                    {product?.name}
+                                                </h3>
+                                                <p className='mt-2 text-17 text-[#fd0000] font-bold'>
+                                                    {handlePrice(product?.options?.[0]?.price)}
+                                                </p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    )}
                 </Box>
                 <Box className='flex items-center h-[45px] text-white'>
                     <Box className='h-full bg-[#ffffff33] grid place-items-center w-[45px] rounded-full'>

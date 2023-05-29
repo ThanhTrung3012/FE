@@ -20,4 +20,9 @@ const handlePrice = (number,space='.', currencyUnit = 'đ') => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, space) + currencyUnit
 }
 
+export const handlePercentPrice = (price,discount) => {
+    const priceDiscount = price - (price * (discount / 100))
+    return priceDiscount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ'
+}
+
 export default handlePrice
