@@ -20,11 +20,11 @@ export const WEB_ROUTERS = {
     home: basePath,
     collection: {
         index: basePath + 'collections',
-        router: basePath + '/collections/:slug'
+        router: basePath + '/collections/:id'
     },
     product: {
         index: basePath + 'product',
-        router: basePath + '/product/:slug'
+        router: basePath + '/product/:id'
     },
     cart: {
         index: basePath + 'cart',

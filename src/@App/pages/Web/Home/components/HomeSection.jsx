@@ -13,7 +13,7 @@ const HomeSection = props => {
         if(category) {
             const getProducts = async () => {
                 try {
-                    const result = await productService.getByCategory(category)
+                    const result = await productService.getByCategory(category,{page_size:5})
                     setProducts(result?.data)
                 } catch (error) {
                     console.log(error);
@@ -21,11 +21,16 @@ const HomeSection = props => {
                 }
             }
             getProducts()
+        }else {
+            setProducts(data)
         }
-    },[category])
+    },[category,data])
 
     return (
         <div className='mt-3'>
+            <div className='mb-3'>
+                <h3 className='text-xl font-bold'>{title}</h3>
+            </div>
             <div className='grid grid-cols-1 md:grid-cols-5 sm:grid-cols-3 gap-2'>
                 {products?.map((item, index) => (
                     <Product key={index} item={item} />

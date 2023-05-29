@@ -1,25 +1,53 @@
-import { Rating } from '@mui/material';
+import { CircularProgress, Rating } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { product } from '../Collections/data';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import clsx from 'clsx';
-import handlePrice from '@Core/Helper/Price';
+import handlePrice, { handlePercentPrice } from '@Core/Helper/Price';
 import CoreAutoComplete from '@Core/components/Input/CoreAutoComplete';
 import { useForm } from 'react-hook-form';
 import Product from '../Collections/components/Product';
 import CoreSwiper from '@Core/components/Swiper/CoreSwiper';
 import { Autoplay } from 'swiper';
 import CoreInput from '@Core/components/Input/CoreInput';
+import { productService } from '@App/services/productService';
+import { useRequest } from 'ahooks';
+import { useParams } from 'react-router-dom';
 
 const ProductPage = () => {
+    const { id } = useParams();
     const { control } = useForm();
     const [value, setValue] = useState(2);
-    const arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const [mainImg, setMainImg] = useState(product?.image);
+    const [mainImg, setMainImg] = useState(null);
+
+    const {
+        data: product,
+        loading,
+        run: getProduct
+    } = useRequest(productService.find, {
+        manual: true,
+        onSuccess: data => {
+            setMainImg(data?.data?.images?.[0]);
+        }
+    });
+
+    const {
+        data: relatedProducts,
+        loading: loadingRelatedProducts,
+        run: getRelatedProducts
+    } = useRequest(productService.getByCategory, {
+        manual: true
+    });
 
     useEffect(() => {
+        if (id) getProduct(id);
         window.scrollTo({ behavior: 'smooth', top: 0 });
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        if (product?.data?.category) {
+            getRelatedProducts(product?.data?.category);
+        }
+    }, [product]);
 
     const areaOptions = [
         { label: 'Hà Nội', value: 'ha-noi' },
@@ -29,8 +57,8 @@ const ProductPage = () => {
     return (
         <div>
             <div className='pb-2 mb-3  border-b border-b-gray-300 flex items-center gap-3'>
-                <h1 className='text-20 font-bold'>{product?.name}</h1>
-                <Rating defaultValue={product?.start} precision={0.5} readOnly={true} />
+                <h1 className='text-20 font-bold'>{product?.data?.name}</h1>
+                <Rating defaultValue={product?.data?.start} precision={0.5} readOnly={true} />
             </div>
             <div className='flex items-start justify-between gap-x-6'>
                 <div className='w-4/12'>
@@ -38,20 +66,11 @@ const ProductPage = () => {
                         <img src={mainImg} alt='image' />
                     </div>
                     <div className='flex items-center  mt-3  gap-2'>
-                        <div
-                            className={clsx(
-                                'cursor-pointer border border-gray-300 bg-white rounded-md w-16 h-16 overflow-hidden',
-                                mainImg === product?.image ? 'border-[#d3161b]' : 'border-gray-300'
-                            )}
-                            onClick={() => setMainImg(product?.image)}
-                        >
-                            <img src={product?.image} alt='image' className='w-full h-full' />
-                        </div>
-                        {product?.subImages.map((url, i) => (
+                        {product?.data?.images?.map((url, i) => (
                             <div
                                 key={i}
                                 className={clsx(
-                                    'cursor-pointer border border-gray-300 bg-white rounded-md w-16 h-16',
+                                    'cursor-pointer border border-gray-300 bg-white rounded-md w-16 h-16 overflow-hidden',
                                     mainImg === url ? 'border-[#d3161b]' : 'border-gray-300'
                                 )}
                                 onClick={() => setMainImg(url)}
@@ -77,16 +96,24 @@ const ProductPage = () => {
                 <div className='w-5/12'>
                     <div className='flex items-center'>
                         <p className='text-20 font-bold text-[#E23C36] mr-3'>
-                            {handlePrice(product?.price)}
+                            {handlePrice(product?.data?.options?.[0]?.price)}
                         </p>
-                        <p className='text-17 line-through text-[#777777]'>
-                            {handlePrice(product?.price)}
-                        </p>
+                        {product?.data?.discount && product?.data?.discount !== 0 && (
+                            <p className='text-17 line-through text-[#777777]'>
+                                {handlePercentPrice(
+                                    product?.data?.options?.[0]?.price,
+                                    product?.data?.discount
+                                )}
+                            </p>
+                        )}
                     </div>
                     <div className='flex mt-5 flex-wrap gap-2'>
-                        {product?.options.map((item, i) => (
-                            <div className='text-center w-[30%] border border-[#DDDDDD] rounded-[12px] py-1 bg-white cursor-pointer'>
-                                <p className='text-15 font-bold'>{item?.name}</p>
+                        {product?.data?.options?.map((item, i) => (
+                            <div
+                                className='text-center w-[30%] border border-[#DDDDDD] rounded-[12px] py-2 bg-white cursor-pointer'
+                                key={i}
+                            >
+                                <p className='text-14 font-bold'>{item?.title}</p>
                                 <p className='text-12'>{handlePrice(item?.price)}</p>
                             </div>
                         ))}
@@ -95,9 +122,12 @@ const ProductPage = () => {
                         Chọn màu để xem giá và chi nhánh có hàng
                     </h3>
                     <div className='flex flex-wrap gap-2 mb-5'>
-                        {product?.colors.map((item, i) => (
-                            <div className='text-center w-[30%] border border-[#DDDDDD] rounded-[12px] py-1 bg-white cursor-pointer'>
-                                <p className='text-15 font-bold'>{item?.name}</p>
+                        {product?.data?.colors.map((item, i) => (
+                            <div
+                                className='text-center w-[30%] border border-[#DDDDDD] rounded-[12px] py-1 bg-white cursor-pointer'
+                                key={i}
+                            >
+                                <p className='text-15 font-bold'>{item?.title}</p>
                                 <p className='text-12'>{handlePrice(item?.price)}</p>
                             </div>
                         ))}
@@ -186,19 +216,26 @@ const ProductPage = () => {
                 </div>
             </div>
             <div className='mt-16'>
-                <CoreSwiper
-                    data={arrays}
-                    SlideItem={Product}
-                    slidesPerView={5}
-                    isShowButton
-                    spaceBetween={5}
-                    loop
-                    modules={[Autoplay]}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false
-                    }}
-                />
+                <h3 className='text-20 font-bold mb-3'>Sản phẩm liên quan</h3>
+                {loadingRelatedProducts ? (
+                    <div className='flex justify-center'>
+                        <CircularProgress />
+                    </div>
+                ) : (
+                    <CoreSwiper
+                        data={relatedProducts?.data}
+                        SlideItem={Product}
+                        slidesPerView={5}
+                        isShowButton
+                        spaceBetween={5}
+                        loop
+                        modules={[Autoplay]}
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false
+                        }}
+                    />
+                )}
             </div>
             <div className='mt-16 flex items-start justify-between gap-5'>
                 <div className='w-9/12 bg-white rounded-xl shadow-md p-3'>
@@ -249,12 +286,12 @@ const ProductPage = () => {
                 <div className='w-3/12 bg-white rounded-xl shadow-md p-3'>
                     <h3 className='mb-4 font-bold text-17'>THÔNG SỐ KỸ THUẬT</h3>
                     <ul>
-                        {product.parameters.map((item, i) => (
+                        {product?.data?.parameters.map((item, i) => (
                             <li
                                 key={i}
                                 className='flex items-center justify-between mb-3 p-2 rounded-xl odd:bg-gray-100'
                             >
-                                <p>{item?.name}</p>
+                                <p>{item?.title}</p>
                                 <p>{item?.value}</p>
                             </li>
                         ))}
