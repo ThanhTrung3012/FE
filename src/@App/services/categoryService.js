@@ -13,6 +13,11 @@ class Category extends BaseService {
         return this.request.get(endpoint);
     }
 
+    getChildrens = (id) => {
+        const endpoint = this.BASE_ENDPOINT + '/childrens/' + id;
+        return this.request.get(endpoint);
+    }
+
     getMenus = () => {
         const endpoint = this.BASE_ENDPOINT + '/menu'
         return this.request.get(endpoint);

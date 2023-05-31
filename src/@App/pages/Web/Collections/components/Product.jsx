@@ -1,9 +1,10 @@
 import React from 'react';
-import { product } from '../data';
 import handlePrice, { handlePercentPrice } from '@Core/Helper/Price';
 import { Rating } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { WEB_ROUTERS } from '@App/configs/constants';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import Image from 'mui-image';
 
 const Product = ({ item }) => {
     return (
@@ -16,11 +17,15 @@ const Product = ({ item }) => {
                 <div className='h-[26px]'></div>
             )}
             <Link to={`${WEB_ROUTERS.product.index}/${item?._id}`}>
-                <img
-                    src={item?.images?.[0]}
-                    alt='hình ảnh'
-                    className='h-[170px] min-h-[170px] w-full group-hover:translate-y-[-10px] duration-300 object-contain pt-3 ease-out mb-2'
-                />
+                <div className='h-[170px] min-h-[170px] w-full group-hover:translate-y-[-10px] duration-300 object-contain pt-3 ease-out mb-2'>
+                    <Image
+                        src={item?.images?.[0]}
+                        alt='hình ảnh'
+                        width={170}
+                        height={170}
+                        errorIcon={<ImageNotSupportedIcon />}
+                    />
+                </div>
             </Link>
             <h3 className='text-[16px] truncate-2 font-bold min-h-[48px]'>
                 <Link to={`${WEB_ROUTERS.product.index}/1`}>{item?.name}</Link>
@@ -38,7 +43,7 @@ const Product = ({ item }) => {
                 </h5>
                 {item?.discount && item?.discount !== 0 ? (
                     <h5 className='text-gray-500 text-[14px] my-3 line-through'>
-                        {handlePercentPrice(item?.options?.[0]?.price,item?.discount)}
+                        {handlePercentPrice(item?.options?.[0]?.price, item?.discount)}
                     </h5>
                 ) : null}
             </div>

@@ -10,9 +10,10 @@ import { useDebounce, useRequest, useUpdateEffect } from 'ahooks';
 import { productService } from '@App/services/productService';
 import { useState } from 'react';
 import handlePrice from '@Core/Helper/Price';
+import Image from 'mui-image';
 
 const Header = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [keyword, setKeyword] = useState('');
     const debouncedKeyword = useDebounce(keyword, { wait: 500 });
     const {
@@ -65,16 +66,22 @@ const Header = () => {
                                         <div
                                             className='flex'
                                             onClick={() => {
-                                                setKeyword('')
-                                                navigate(WEB_ROUTERS.product.index + '/' + product._id)
+                                                setKeyword('');
+                                                navigate(
+                                                    WEB_ROUTERS.product.index + '/' + product._id
+                                                );
                                             }}
                                         >
-                                            <img
-                                                src={product?.images?.[0]}
-                                                className='w-[60px] h-[60px] border border-[#f6bea9]'
-                                            />
+                                            <div className='border border-[#f6bea9]'>
+                                                <Image
+                                                    src={product?.images?.[0]}
+                                                    width={60}
+                                                    height={60}
+                                                    duration={100}
+                                                />
+                                            </div>
                                             <div className='pl-2'>
-                                                <h3 className='text-16 font-bold'>
+                                                <h3 className='text-16 font-bold truncate-1'>
                                                     {product?.name}
                                                 </h3>
                                                 <p className='mt-2 text-17 text-[#fd0000] font-bold'>

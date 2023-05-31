@@ -14,6 +14,7 @@ import hotSaleBg from '@App/assets/hotsale-bg.png';
 import { useRequest } from 'ahooks';
 import { productService } from '@App/services/productService';
 import { categoryService } from '@App/services/categoryService';
+import { bannerService } from '@App/services/bannerService';
 
 const Home = () => {
     const arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -45,6 +46,14 @@ const Home = () => {
         manual: true
     });
 
+    const {
+        data: sliders,
+        loading:loadingSliders,
+        run: getSliders
+    } = useRequest(bannerService.getByDisplay, {
+        manual: true
+    });
+
     useEffect(() => {
         getMenus();
     }, []);
@@ -52,9 +61,10 @@ const Home = () => {
     useEffect(() => {
         getHotProducts('isHot');
         getPopularProducts('isPopular');
+        getSliders(3);
     }, []);
 
-    if(loadingMenus) {
+    if(loadingMenus || loadingPopularProduct || loadingSliders) {
         return (
             <div className="flex justify-center items-center min-h-[80vh]">
                 <CircularProgress />
@@ -69,7 +79,7 @@ const Home = () => {
                     <HomeMenu menus={menus}/>
                 </div>
                 <div className='w-3/5'>
-                    <HomeSlides />
+                    <HomeSlides sliders={sliders?.data}/>
                 </div>
                 <div className='w-1/5'>
                     {heroBanners.map((banner, i) => (

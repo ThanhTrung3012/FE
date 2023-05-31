@@ -1,28 +1,29 @@
-import CoreSwiper from '@Core/components/Swiper/CoreSwiper'
-import React from 'react'
-import { FreeMode, Thumbs,Autoplay } from "swiper";
-import "swiper/css/free-mode";
-import "swiper/css/thumbs";
-import { sliders } from '../data'
+import CoreSwiper from '@Core/components/Swiper/CoreSwiper';
+import React from 'react';
+import { FreeMode, Thumbs, Autoplay } from 'swiper';
+import 'swiper/css/free-mode';
+import 'swiper/css/thumbs';
+import HomeSlideItem from './HomeSlideItem';
 
-const HomeSlides = () => {
-  return (
-    <CoreSwiper 
-        data={sliders}
-        modules={[FreeMode,Autoplay, Thumbs]}
-        isGallery
-        isImageOnly
-        slidesPerView={1}
-        isShowButton={false}
-        className='h-[318px]'
-        loop
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
-        speed={800}
-    />
-  )
-}
+const HomeSlides = ({sliders}) => {
+    
+    return (
+        <CoreSwiper
+            data={sliders}
+            modules={[FreeMode, Autoplay, Thumbs]}
+            isGallery
+            slidesPerView={1}
+            isShowButton={false}
+            SlideItem={HomeSlideItem}
+            className='h-[318px]'
+            loop
+            autoplay={{
+                delay: 2000,
+                disableOnInteraction: false
+            }}
+            speed={800}
+        />
+    );
+};
 
-export default HomeSlides
+export default HomeSlides;

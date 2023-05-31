@@ -4,6 +4,7 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import clsx from 'clsx';
 import handlePrice, { handlePercentPrice } from '@Core/Helper/Price';
 import CoreAutoComplete from '@Core/components/Input/CoreAutoComplete';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import { useForm } from 'react-hook-form';
 import Product from '../Collections/components/Product';
 import CoreSwiper from '@Core/components/Swiper/CoreSwiper';
@@ -13,6 +14,7 @@ import { productService } from '@App/services/productService';
 import { useRequest } from 'ahooks';
 import { useParams } from 'react-router-dom';
 import { Fragment } from 'react';
+import Image from 'mui-image';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -72,7 +74,7 @@ const ProductPage = () => {
             <div className='flex items-start justify-between gap-x-6'>
                 <div className='w-4/12'>
                     <div className='border border-black rounded-lg p-2 bg-white flex item-centers justify-center w-full h-[290px]'>
-                        <img src={mainImg} alt='image' />
+                        <Image src={mainImg} errorIcon={<ImageNotSupportedIcon />} alt='image' />
                     </div>
                     <div className='flex items-center  mt-3  gap-2'>
                         {product?.data?.images?.map((url, i) => (
@@ -84,7 +86,7 @@ const ProductPage = () => {
                                 )}
                                 onClick={() => setMainImg(url)}
                             >
-                                <img src={url} alt='image' className='w-full h-full' />
+                                <Image errorIcon={<ImageNotSupportedIcon />} src={url} alt='image' className='w-full h-full' />
                             </div>
                         ))}
                     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { categories, marks } from './data';
+import { marks } from './data';
 import { Link, useParams } from 'react-router-dom';
 import { CircularProgress, Slider, styled } from '@mui/material';
 import handlePrice from '@Core/Helper/Price';
@@ -7,7 +7,7 @@ import Product from './components/Product';
 import Pagination from '@mui/material/Pagination';
 import { useDebounce, useRequest } from 'ahooks';
 import { productService } from '@App/services/productService';
-import { Fragment } from 'react';
+import useChildrenCategories from './hooks/useChildrenCategories';
 
 const SliderStyle = styled(Slider)({
     '& .MuiSlider-thumb': {
@@ -24,6 +24,8 @@ const Collections = () => {
     const [page, setPage] = useState(1);
     const [filterPrice, setFilterPrice] = React.useState([0, 150000000]);
     const filterPriceDebounce = useDebounce(filterPrice, { wait: 500 });
+    const { categories, loadingCategories } = useChildrenCategories(id);
+
     const {
         data: products,
         loading,
@@ -45,15 +47,23 @@ const Collections = () => {
         setFilterPrice(v);
     };
 
+    if (loadingCategories || loading) {
+        return (
+            <div className='flex justify-center min-h-[70vh] items-center'>
+                <CircularProgress />
+            </div>
+        );
+    }
+
     return (
-        <div className="min-h-[70vh]">
+        <div className='min-h-[70vh]'>
             <div className='flex items-center gap-3 flex-wrap mb-3'>
-                {categories.map((item, i) => (
+                {categories?.data?.map((item, i) => (
                     <div
                         key={i}
-                        className='border p-1  rounded-xl border-gray-300 bg-white text-14'
+                        className='border p-1 px-3 rounded-[20px] border-gray-300 bg-white text-14'
                     >
-                        <Link to='/' className='font-bold'>
+                        <Link to={'/collections/' + item?._id} className='font-bold'>
                             {item.name}
                         </Link>
                     </div>

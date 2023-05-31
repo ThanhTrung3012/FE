@@ -8,6 +8,10 @@ class Banner extends BaseService {
         this.setRequest();
     }
 
+    getByDisplay = (display) => {
+        const url = this.BASE_ENDPOINT + '/by-display?display=' + display;
+        return this.request.get(url);
+    }
 }
 
 export const bannerService = new Banner();

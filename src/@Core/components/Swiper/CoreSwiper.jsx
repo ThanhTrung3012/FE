@@ -21,6 +21,7 @@ import { NextButton, PrevButton } from './SwiperButton';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
+import Image from 'mui-image';
 
 const CoreSwiper = props => {
     const {
@@ -70,7 +71,7 @@ const CoreSwiper = props => {
                             offset={LazyLoadOffset}
                         >
                             {isImageOnly ? (
-                                <img
+                                <Image
                                     src={isGallery ? item.image : item}
                                     className={clsx(
                                         'h-[500px] w-full mx-auto object-cover',
