@@ -2,9 +2,58 @@ import React from 'react';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import CoreInput from '@Core/components/Input/CoreInput';
 import { useForm } from 'react-hook-form';
+import { styled } from '@mui/material';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LoadingButton } from '@mui/lab';
+import { errorMessage, successMessage } from '@Core/Helper/Message';
+import { contactService } from '@App/services/contactService';
+
+const CoreInputStyles = styled(CoreInput)(({ theme }) => {
+    return {
+        '& .MuiOutlinedInput-notchedOutline ': {
+            borderRadius: '12px !important'
+        }
+    };
+});
 
 const Contact = () => {
-    const { control } = useForm();
+    const {
+        control,
+        handleSubmit,
+        formState: { isSubmitting },
+        reset
+    } = useForm({
+        defaultValues: {
+            user_name: '',
+            user_address: '',
+            user_email: '',
+            user_phone: '',
+            content: ''
+        },
+        resolver: yupResolver(
+            Yup.object({
+                user_name: Yup.string().trim().required('Tên là bắt buộc'),
+                user_address: Yup.string().trim().required('Địa chỉ là bắt buộc'),
+                user_email: Yup.string()
+                    .trim()
+                    .email('Email không hợp lệ')
+                    .required('Email là bắt buộc'),
+                user_phone: Yup.string().trim().required('Số điện thoại là bắt buộc'),
+                content: Yup.string().trim().required('Nội dung là bắt buộc')
+            })
+        )
+    });
+
+    const onSubmit = handleSubmit(async data => {
+        try {
+            await contactService.create(data)
+            successMessage('Gửi liên hệ thành công chúng tôi sẽ sớm liên hệ với bạn!')
+            reset()
+        } catch (error) {
+            errorMessage(error);
+        }
+    });
 
     return (
         <div className='p-10'>
@@ -46,59 +95,38 @@ const Contact = () => {
                 Cảm ơn bạn đã quan tâm đến sản phẩm và dịch vụ của Oneway, vui lòng gửi liên hệ theo
                 mẫu phản hồi bên dưới, chúng tôi sẽ sớm liên hệ lại với bạn.
             </p>
-            <form action=''>
+            <form onSubmit={onSubmit}>
                 <div class='flex gap-5 mb-5'>
-                    <CoreInput
-                        control={control}
-                        name='name'
-                        sx={{
-                            '& .MuiOutlinedInput-notchedOutline ': {
-                                borderRadius: '12px !important'
-                            }
-                        }}
-                    />
-                    <CoreInput
-                        control={control}
-                        name='name'
-                        sx={{
-                            '& .MuiOutlinedInput-notchedOutline ': {
-                                borderRadius: '12px !important'
-                            }
-                        }}
-                    />
+                    <CoreInputStyles control={control} name='user_name' placeholder='Họ và tên' />
+                    <CoreInputStyles control={control} name='user_address' placeholder='Địa chỉ' />
                 </div>
                 <div class='flex gap-5 mb-5'>
-                    <CoreInput
+                    <CoreInputStyles
                         control={control}
-                        name='name'
-                        sx={{
-                            '& .MuiOutlinedInput-notchedOutline ': {
-                                borderRadius: '12px !important'
-                            }
-                        }}
+                        name='user_phone'
+                        placeholder='Số điện thoại'
                     />
-                    <CoreInput
-                        control={control}
-                        name='name'
-                        sx={{
-                            '& .MuiOutlinedInput-notchedOutline ': {
-                                borderRadius: '12px !important'
-                            }
-                        }}
-                    />
+                    <CoreInputStyles control={control} name='user_email' placeholder='Email' />
                 </div>
-                <CoreInput
+                <CoreInputStyles
                     control={control}
-                    name='name'
+                    name='content'
                     multiline
                     minRows={7}
-                    sx={{
-                        '& .MuiOutlinedInput-notchedOutline ': {
-                            borderRadius: '12px !important'
-                        }
-                    }}
+                    placeholder='Nội dung'
                 />
-                <button className='w-full py-3 bg-[#EF6837] mt-5 rounded-[12px] text-white text-18'>Gửi liên hệ</button>
+                <div className='mt-5'>
+                    <LoadingButton
+                        variant='contained'
+                        color='orange'
+                        className='w-full py-3 text-18'
+                        type='submit'
+                        loading={isSubmitting}
+                        sx={{ color: 'white !important', borderRadius: '12px !important' }}
+                    >
+                        Gửi liên hệ
+                    </LoadingButton>
+                </div>
             </form>
         </div>
     );

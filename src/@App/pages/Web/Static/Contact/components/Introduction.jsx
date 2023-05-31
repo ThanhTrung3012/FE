@@ -1,5 +1,4 @@
 import React from 'react';
-import StaticPageLayout from '@App/components/Layout/StaticPageLayout';
 import teamImg from '@App/assets/team.jpeg';
 
 const Introduction = () => {

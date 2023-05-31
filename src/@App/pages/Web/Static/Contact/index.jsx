@@ -1,9 +1,9 @@
 import StaticPageLayout from '@App/components/Layout/StaticPageLayout';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Introduction from './Introduction';
-import Shops from './Shops';
-import Contact from './Contact';
+import Introduction from './components/Introduction';
+import Shops from './components/Shops';
+import Contact from './components/Contact';
 import { WEB_ROUTERS } from '@App/configs/constants';
 
 const ContactWapper = () => {

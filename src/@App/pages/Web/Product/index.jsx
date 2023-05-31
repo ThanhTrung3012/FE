@@ -12,6 +12,7 @@ import CoreInput from '@Core/components/Input/CoreInput';
 import { productService } from '@App/services/productService';
 import { useRequest } from 'ahooks';
 import { useParams } from 'react-router-dom';
+import { Fragment } from 'react';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -54,8 +55,16 @@ const ProductPage = () => {
         { label: 'TPHCM', value: 'tphm' }
     ];
 
+    if(loading) {
+        return (
+            <div className="flex justify-center min-h-[80vh] items-center">
+                <CircularProgress />
+            </div>
+        )
+    }
+
     return (
-        <div>
+        <Fragment>
             <div className='pb-2 mb-3  border-b border-b-gray-300 flex items-center gap-3'>
                 <h1 className='text-20 font-bold'>{product?.data?.name}</h1>
                 <Rating defaultValue={product?.data?.start} precision={0.5} readOnly={true} />
@@ -113,7 +122,7 @@ const ProductPage = () => {
                                 className='text-center w-[30%] border border-[#DDDDDD] rounded-[12px] py-2 bg-white cursor-pointer'
                                 key={i}
                             >
-                                <p className='text-14 font-bold'>{item?.title}</p>
+                                <p className='text-14 font-bold truncate-1'>{item?.title}</p>
                                 <p className='text-12'>{handlePrice(item?.price)}</p>
                             </div>
                         ))}
@@ -298,7 +307,7 @@ const ProductPage = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+        </Fragment>
     );
 };
 

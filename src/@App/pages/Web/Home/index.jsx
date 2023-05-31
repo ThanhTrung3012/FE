@@ -13,6 +13,7 @@ import HomeSection from './components/HomeSection';
 import hotSaleBg from '@App/assets/hotsale-bg.png';
 import { useRequest } from 'ahooks';
 import { productService } from '@App/services/productService';
+import { categoryService } from '@App/services/categoryService';
 
 const Home = () => {
     const arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -36,16 +37,36 @@ const Home = () => {
         manual: true
     });
 
+    const {
+        data: menus,
+        loading:loadingMenus,
+        run: getMenus
+    } = useRequest(categoryService.getMenus, {
+        manual: true
+    });
+
+    useEffect(() => {
+        getMenus();
+    }, []);
+
     useEffect(() => {
         getHotProducts('isHot');
         getPopularProducts('isPopular');
     }, []);
 
+    if(loadingMenus) {
+        return (
+            <div className="flex justify-center items-center min-h-[80vh]">
+                <CircularProgress />
+            </div>
+        )
+    }
+
     return (
         <Helmet pageTitle='OneWay Mobile' pageDescription='Wellcom to my app'>
             <div className='flex items-start gap-x-3'>
                 <div className='w-1/5'>
-                    <HomeMenu />
+                    <HomeMenu menus={menus}/>
                 </div>
                 <div className='w-3/5'>
                     <HomeSlides />

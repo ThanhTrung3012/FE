@@ -33,6 +33,7 @@ const ProductForm = props => {
         defaultValues: {
             id: product?._id ?? null,
             name: product?.name ?? '',
+            price: product?.price ?? '',
             category: product?.category ?? '',
             discount: product?.discount ?? '',
             description: product?.description ?? '',
@@ -46,6 +47,10 @@ const ProductForm = props => {
         resolver: yupResolver(
             Yup.object({
                 name: Yup.string().trim().required('Tên sản phẩm là bắt buộc'),
+                price: Yup.string()
+                    .trim()
+                    .required('Giá trung bình sản phẩm là bắt buộc')
+                    .matches(/^[1-9][0-9]*$/, 'Giá trung bình sản phẩm không hợp lệ'),
                 category: Yup.string().trim().required('Loại sản phẩm là bắt buộc'),
                 discount: Yup.string().matches(/^(?:100|[1-9]?\d|0)$/, 'Khuyến mãi không hợp lệ'),
                 images: !isEdit
@@ -84,6 +89,7 @@ const ProductForm = props => {
             const formData = new FormData();
             formData.append('id', data?.id);
             formData.append('name', data?.name);
+            formData.append('price', data?.price);
             formData.append('category', data?.category);
             formData.append('discount', data?.discount);
             formData.append('description', data?.description);
@@ -124,6 +130,7 @@ const ProductForm = props => {
         <FormProvider control={control} errors={errors}>
             <form className='max-w-3xl mx-auto' onSubmit={onSubmit}>
                 <CoreInput control={control} name='name' label='Tên sản phẩm' className='mb-3' />
+                <CoreInput control={control} name='price' label='Giá trung bình' className='mb-3' />
                 <Box className='flex gap-x-10 mb-5'>
                     <Box className='w-1/2'>
                         <CoreInput control={control} name='discount' label='Giảm giá(%)' />

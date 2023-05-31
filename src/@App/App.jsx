@@ -35,6 +35,7 @@ function App() {
                 <AppContextProvider>
                     <HelmetProvider>
                         <RouterProvider router={appRouterConfigs} />
+                        <ToastContainer />
                     </HelmetProvider>
                 </AppContextProvider>
             )}

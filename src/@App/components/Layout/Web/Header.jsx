@@ -4,7 +4,7 @@ import PhoneInTalkRoundedIcon from '@mui/icons-material/PhoneInTalkRounded';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { WEB_ROUTERS } from '@App/configs/constants';
 import { useDebounce, useRequest, useUpdateEffect } from 'ahooks';
 import { productService } from '@App/services/productService';
@@ -12,6 +12,7 @@ import { useState } from 'react';
 import handlePrice from '@Core/Helper/Price';
 
 const Header = () => {
+    const navigate = useNavigate()
     const [keyword, setKeyword] = useState('');
     const debouncedKeyword = useDebounce(keyword, { wait: 500 });
     const {
@@ -27,7 +28,7 @@ const Header = () => {
     }, [debouncedKeyword]);
 
     return (
-        <Box className='fixed top-0 left-0 right-0 bg-[#F06837] min-h-[50px] z-[1000000]'>
+        <Box className='fixed top-0 left-0 right-0 bg-[#F06837] min-h-[50px] z-[999]'>
             <Box className='w-[1220px] mx-auto px-[10px] py-2 flex items-center justify-between'>
                 <Link to='/'>
                     <img
@@ -61,9 +62,12 @@ const Header = () => {
                             ) : (
                                 products?.data?.map(product => (
                                     <div key={product?._id} className='hover:bg-gray-100'>
-                                        <Link
-                                            to={WEB_ROUTERS.product.index + '/' + product._id}
+                                        <div
                                             className='flex'
+                                            onClick={() => {
+                                                setKeyword('')
+                                                navigate(WEB_ROUTERS.product.index + '/' + product._id)
+                                            }}
                                         >
                                             <img
                                                 src={product?.images?.[0]}
@@ -77,7 +81,7 @@ const Header = () => {
                                                     {handlePrice(product?.options?.[0]?.price)}
                                                 </p>
                                             </div>
-                                        </Link>
+                                        </div>
                                     </div>
                                 ))
                             )}
