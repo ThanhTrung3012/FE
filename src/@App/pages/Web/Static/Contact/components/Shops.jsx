@@ -5,6 +5,12 @@ import { showRoomService } from '@App/services/showRoomService';
 import ElementLoading from '@App/components/Loading/ElementLoading';
 import clsx from 'clsx';
 
+const getMapUrl = (iframe) => {
+    var regex = /src="([^"]+)"/;
+    var match = regex.exec(iframe);
+    var link = match[1];
+}
+
 const Shops = () => {
     const [area, setArea] = useState('MIEN-BAC');
     const { data, loading, run: getShops } = useRequest(showRoomService.list);
@@ -53,7 +59,7 @@ const Shops = () => {
                         <div className='p-3 w-full md:w-1/2 lg:w-4/12'  key={i}>
                             <div className='p-6 border border-gray-200 rounded-xl'>
                                 <iframe
-                                    src={item?.link_map}
+                                    src={item?.link_map?.match(/<iframe\s+src="([^"]+)"/)?.[1] ?? ''}
                                     className='w-full h-[250px] md:h-[350px]'
                                     loading='lazy'
                                     referrerPolicy='no-referrer-when-downgrade'
