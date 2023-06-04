@@ -7,6 +7,11 @@ class Evaluate extends BaseService {
         super(params);
         this.setRequest();
     }
+
+    changeDisplay = (id) => {
+        const url = this.BASE_ENDPOINT + '/' + id;
+        return this.request.put(url)
+    }
 }
 
 export const evaluateService = new Evaluate();

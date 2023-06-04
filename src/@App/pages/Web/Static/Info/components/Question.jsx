@@ -12,7 +12,7 @@ const Question = () => {
     };
 
     return (
-        <div className='p-10'>
+        <div className='p-0 md:p-10'>
             <div className='relative'>
                 <h1 className='text-center text-[32px] font-bold'>
                     CÂU HỎI THƯỜNG GẶP KHI MUA HÀNG ONLINE

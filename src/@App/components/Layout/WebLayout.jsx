@@ -13,13 +13,21 @@
  * ----------	---	----------------------------------------------------------
  */
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Box, CircularProgress } from '@mui/material';
+import { Box } from '@mui/material';
 import Header from './Web/Header';
 import Footer from './Web/Footer';
+import HomeMenu from '@App/pages/Web/Home/components/HomeMenu';
+import useMenus from '@App/pages/Web/Home/hooks/useMenus';
+import WebLoading from '../Loading/WebLoading';
 
 const WebLayout = () => {
+    const { getMenus, menus } = useMenus();
+
+    useEffect(() => {
+        getMenus();
+    }, []);
 
     return (
         <Box className='bg-[#F5F5F7] min-h-screen'>
@@ -27,12 +35,13 @@ const WebLayout = () => {
             <Suspense
                 fallback={
                     <div className='flex justify-center items-center h-screen w-screen'>
-                        <CircularProgress />
+                        <WebLoading />
                     </div>
                 }
             >
-                <Box className='w-[1220px] px-[10px] mx-auto pt-[80px]'>
+                <Box className='w-full lg:w-[1220px] px-[10px] mx-auto pt-[80px]'>
                     <Outlet />
+                    <HomeMenu menus={menus} isGlobal/>
                 </Box>
             </Suspense>
             <Footer />

@@ -26,9 +26,9 @@ const Footer = () => {
     ];
 
     return (
-        <div className='shadow-xl bg-white mt-10 py-6' style={{boxShadow: '0 -5px 5px -5px rgba(0,0,0,0.1)'}}>
-            <div className='w-[1320px] mx-auto'>
-                <div className='flex justify-between'>
+        <div className='shadow-xl bg-white mt-10 py-6 lg:px-0 px-[10px]' style={{boxShadow: '0 -5px 5px -5px rgba(0,0,0,0.1)'}}>
+            <div className='w-full lg:w-[1320px] mx-auto'>
+                <div className='flex justify-between lg:flex-row flex-col lg:gap-0 gap-5'>
                     <div className='flex flex-col gap-2'>
                         <h3 className='mb-2 font-bold'>Thông tin liên hệ</h3>
                         {contacts.map((contact, index) => (
@@ -48,7 +48,7 @@ const Footer = () => {
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <h3 className='mb-2 font-bold text-right'>Bản quyền</h3>
+                        <h3 className='mb-2 font-bold text-left lg:mt-0 mt-5 lg:text-right'>Bản quyền</h3>
                         <div className='flex items-center gap-1'>
                             <img
                                 width='150'
@@ -65,7 +65,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className='mt-6 pt-4 border-t-[1px] flex justify-between items-center border-gray-400 '>
+                <div className='mt-6 pt-4 border-t-[1px] flex justify-between lg:flex-row flex-col gap-3 items-center border-gray-400 '>
                     <p className='text-gray-500 text-lg'>
                         Copyright © 2022 - Bản quyền thuộc về Đỗ Thành Trung.
                     </p>

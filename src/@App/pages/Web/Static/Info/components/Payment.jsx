@@ -2,7 +2,7 @@ import React from 'react';
 
 const Payment = () => {
     return (
-        <div className='p-10'>
+        <div className='p-0 md:p-10'>
             <div className='relative'>
                 <h1 className='text-center text-[32px] font-bold'>PHƯƠNG THỨC THANH TOÁN</h1>
                 <span className='absolute w-[100px] h-[3px] bg-[#EF6837] left-1/2 translate-x-[-50%]'></span>

@@ -1,5 +1,8 @@
 import React from 'react';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
+import PermPhoneMsgRoundedIcon from '@mui/icons-material/PermPhoneMsgRounded';
+import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRounded';
+import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import CoreInput from '@Core/components/Input/CoreInput';
 import { useForm } from 'react-hook-form';
 import { styled } from '@mui/material';
@@ -47,21 +50,21 @@ const Contact = () => {
 
     const onSubmit = handleSubmit(async data => {
         try {
-            await contactService.create(data)
-            successMessage('Gửi liên hệ thành công chúng tôi sẽ sớm liên hệ với bạn!')
-            reset()
+            await contactService.create(data);
+            successMessage('Gửi liên hệ thành công chúng tôi sẽ sớm liên hệ với bạn!');
+            reset();
         } catch (error) {
             errorMessage(error);
         }
     });
 
     return (
-        <div className='p-10'>
+        <div className='p-0 md:p-10'>
             <div className='relative'>
                 <h1 className='text-center text-[32px] font-bold'>Liên hệ với chúng tôi</h1>
                 <span className='absolute w-[100px] h-[3px] bg-[#EF6837] left-1/2 translate-x-[-50%]'></span>
             </div>
-            <div className='flex justify-around gap-5 mt-10'>
+            <div className='flex lg:flex-nowrap flex-wrap justify-around gap-5 mt-10'>
                 <div className='text-center'>
                     <div className='w-[80px] h-[80px] grid place-content-center mx-auto shadow-lg rounded-full mb-3'>
                         <PlaceOutlinedIcon className='text-[#EF6837]' fontSize='large' />
@@ -71,21 +74,21 @@ const Contact = () => {
                 </div>
                 <div className='text-center'>
                     <div className='w-[80px] h-[80px] grid place-content-center mx-auto shadow-lg rounded-full mb-3'>
-                        <PlaceOutlinedIcon className='text-[#EF6837]' fontSize='large' />
+                        <PermPhoneMsgRoundedIcon className='text-[#EF6837]' fontSize='large' />
                     </div>
                     <h3 className='font-bold'>Tổng đài</h3>
                     <p>0987954221</p>
                 </div>
                 <div className='text-center'>
                     <div className='w-[80px] h-[80px] grid place-content-center mx-auto shadow-lg rounded-full mb-3'>
-                        <PlaceOutlinedIcon className='text-[#EF6837]' fontSize='large' />
+                        <AccessTimeFilledRoundedIcon className='text-[#EF6837]' fontSize='large' />
                     </div>
                     <h3 className='font-bold'>Giờ làm việc</h3>
                     <p>8h15 - 22h tất cả các ngày trong tuần (cả ngày lễ)</p>
                 </div>
                 <div className='text-center'>
                     <div className='w-[80px] h-[80px] grid place-content-center mx-auto shadow-lg rounded-full mb-3'>
-                        <PlaceOutlinedIcon className='text-[#EF6837]' fontSize='large' />
+                        <MailRoundedIcon className='text-[#EF6837]' fontSize='large' />
                     </div>
                     <h3 className='font-bold'>Email liên hệ</h3>
                     <p>nghiemmanhcuong198@gmail.com</p>
@@ -96,17 +99,33 @@ const Contact = () => {
                 mẫu phản hồi bên dưới, chúng tôi sẽ sớm liên hệ lại với bạn.
             </p>
             <form onSubmit={onSubmit}>
-                <div class='flex gap-5 mb-5'>
-                    <CoreInputStyles control={control} name='user_name' placeholder='Họ và tên' />
-                    <CoreInputStyles control={control} name='user_address' placeholder='Địa chỉ' />
+                <div className='flex gap-5 mb-5 md:flex-nowrap flex-wrap'>
+                    <CoreInputStyles
+                        control={control}
+                        name='user_name'
+                        className='w-full md:w-[unset]'
+                        placeholder='Họ và tên'
+                    />
+                    <CoreInputStyles
+                        control={control}
+                        name='user_address'
+                        className='w-full md:w-[unset]'
+                        placeholder='Địa chỉ'
+                    />
                 </div>
-                <div class='flex gap-5 mb-5'>
+                <div className='flex gap-5 mb-5 md:flex-nowrap flex-wrap'>
                     <CoreInputStyles
                         control={control}
                         name='user_phone'
                         placeholder='Số điện thoại'
+                        className='w-full md:w-[unset]'
                     />
-                    <CoreInputStyles control={control} name='user_email' placeholder='Email' />
+                    <CoreInputStyles
+                        control={control}
+                        name='user_email'
+                        placeholder='Email'
+                        className='w-full md:w-[unset]'
+                    />
                 </div>
                 <CoreInputStyles
                     control={control}

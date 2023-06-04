@@ -58,6 +58,10 @@ const useOrderDialog = () => {
                                 {order?.data?.name}
                             </Box>
                             <Box className='flex items-center mb-3'>
+                                <Typography className='w-52'>Giới tính:</Typography>{' '}
+                                {order?.data?.sex == 0 ? 'Nữ' : 'Nam'}
+                            </Box>
+                            <Box className='flex items-center mb-3'>
                                 <Typography className='w-52'>Địa chỉ:</Typography>{' '}
                                 {order?.data?.address}
                             </Box>
@@ -80,6 +84,10 @@ const useOrderDialog = () => {
                             <Box className='flex items-center mb-3'>
                                 <Typography className='w-52'>Trạng thái:</Typography>{' '}
                                 {order?.data?.status}
+                            </Box>
+                            <Box className='flex items-center mb-3'>
+                                <Typography className='w-52'>Yêu cầu khác:</Typography>{' '}
+                                {order?.data?.other_requirements ? order?.data?.other_requirements : 'Không có yêu cầu khác'}
                             </Box>
                         </>
                     )}

@@ -67,7 +67,7 @@ const CoreRadioGroup = props => {
                                 })}
                             </RadioGroup>
                             {error && error.message ? (
-                                <FormHelperText error>{error.message}</FormHelperText>
+                                <FormHelperText sx={{marginTop:'-5px !important'}} error>{error.message}</FormHelperText>
                             ) : null}
                         </Box>
                     </Box>

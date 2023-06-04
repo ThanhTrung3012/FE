@@ -42,6 +42,7 @@ const CoreSwiper = props => {
         LazyLoadOffset = 0,
         isGallery = false,
         isShowButton = true,
+        centerInsufficientSlides = true,
         ...restProps
     } = props;
 
@@ -59,7 +60,7 @@ const CoreSwiper = props => {
                 initialSlide={initialSlide}
                 spaceBetween={spaceBetween}
                 slidesPerView={slidesPerView}
-                centerInsufficientSlides={true}
+                centerInsufficientSlides={centerInsufficientSlides}
                 thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                 {...restProps}
             >
@@ -69,10 +70,12 @@ const CoreSwiper = props => {
                             height={LazyLoadHeight}
                             once={LazyLoadOnce}
                             offset={LazyLoadOffset}
+                            className='h-full'
                         >
                             {isImageOnly ? (
                                 <Image
                                     src={isGallery ? item.image : item}
+                                    height={300}
                                     className={clsx(
                                         'h-[500px] w-full mx-auto object-cover',
                                         imgTagClassName
@@ -103,6 +106,23 @@ const CoreSwiper = props => {
                     effect={effect}
                     speed={speed}
                     className='bg-white'
+                    breakpoints={{
+                        // when window width is >= 320px
+                        320: {
+                            slidesPerView: 1,
+                            spaceBetween: 0
+                        },
+                        // when window width is >= 480px
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 0
+                        },
+                        // when window width is >= 640px
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 0
+                        }
+                    }}
                 >
                     {data.map((item,index) => {
                         return (

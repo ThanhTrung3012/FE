@@ -10,7 +10,7 @@ const Introduction = () => {
                     <h2 className='text-center pb-2 text-[32px] font-bold'>GIỚI THIỆU CÔNG TY</h2>
                     <span className='absolute w-[100px] h-[3px] bg-[#EF6837] left-1/2 translate-x-[-50%]'></span>
                 </div>
-                <p className='text-18'>
+                <p className='text-18 md:p-10 p-0'>
                     Trải qua nhiều năm hoạt động, Oneway hiện nay được biết đến như 1 đơn vị dẫn đầu
                     trong ngành bán lẻ Điện thoại di động – Máy Tính bảng – Macbook - Phụ kiện Công
                     nghệ Qua sử dụng/Mới tại thị trường Hà Nội nói riêng cũng như trên toàn quốc.

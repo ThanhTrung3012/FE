@@ -11,11 +11,20 @@ import { productService } from '@App/services/productService';
 import { useState } from 'react';
 import handlePrice from '@Core/Helper/Price';
 import Image from 'mui-image';
+import { useAppContext } from '@App/AppContext';
+import { toggleMenu } from '@App/store/actions';
+import ElementLoading from '@App/components/Loading/ElementLoading';
 
 const Header = () => {
     const navigate = useNavigate();
+    const {
+        state: {
+            cart: { total }
+        },
+        dispatch
+    } = useAppContext();
     const [keyword, setKeyword] = useState('');
-    const debouncedKeyword = useDebounce(keyword, { wait: 500 });
+    const debouncedKeyword = useDebounce(keyword, { wait: keyword ? 500 : 0 });
     const {
         data: products,
         loading,
@@ -30,18 +39,21 @@ const Header = () => {
 
     return (
         <Box className='fixed top-0 left-0 right-0 bg-[#F06837] min-h-[50px] z-[999]'>
-            <Box className='w-[1220px] mx-auto px-[10px] py-2 flex items-center justify-between'>
+            <Box className='sm:w-full md:w-[800px] lg:w-[1220px] mx-auto px-[10px] py-2 flex items-center justify-between'>
                 <Link to='/'>
                     <img
                         src='https://onewaymobile.vn/images/config/logo-1_1663066621_1663318779.svg'
                         alt=''
                     />
                 </Link>
-                <Box className='border border-white rounded-xl px-6 flex h-[45px] items-center gap-x-3 cursor-pointer'>
-                    <img src='https://onewaymobile.vn/images/menu.svg' alt='' />
-                    <Typography variant='subtitle1'>Danh mục</Typography>
+                <Box
+                    className='border border-white rounded-xl px-6 flex h-[45px] items-center gap-x-3 cursor-pointer'
+                    onClick={() => dispatch(toggleMenu())}
+                >
+                    <img src='https://onewaymobile.vn/images/menu.svg' className='md:min-w-[18px] md:h-[18px]' />
+                    <Typography variant='subtitle1' className='lg:block md:hidden'>Danh mục</Typography>
                 </Box>
-                <Box className='relative'>
+                <Box className='relative  hidden lg:block'>
                     <div className='bg-white rounded-xl relative w-[455px] h-[45px] overflow-hidden focus-visible:outline-none'>
                         <input
                             placeholder='Bạn cần tìm gì? iPhone,iPad, Macbook...?'
@@ -58,11 +70,14 @@ const Header = () => {
                         <div className='absolute left-0 right-0 top-[45px] border border-[#F06837] space-y-1 bg-white p-3 w-full z-50 max-h-[400px] overflow-y-scroll'>
                             {loading ? (
                                 <div className='flex justify-center'>
-                                    <CircularProgress />
+                                    <ElementLoading />
                                 </div>
                             ) : (
                                 products?.data?.map(product => (
-                                    <div key={product?._id} className='hover:bg-gray-100'>
+                                    <div
+                                        key={product?._id}
+                                        className='hover:bg-gray-100 cursor-pointer h-[60px]'
+                                    >
                                         <div
                                             className='flex'
                                             onClick={() => {
@@ -95,7 +110,7 @@ const Header = () => {
                         </div>
                     )}
                 </Box>
-                <Box className='flex items-center h-[45px] text-white'>
+                <Box className='lg:flex hidden items-center h-[45px] text-white'>
                     <Box className='h-full bg-[#ffffff33] grid place-items-center w-[45px] rounded-full'>
                         <PhoneInTalkRoundedIcon className='text-white' />
                     </Box>
@@ -104,7 +119,7 @@ const Header = () => {
                         <Typography className='text-14 font-semibold'>0987954221</Typography>
                     </a>
                 </Box>
-                <Box className='flex items-center h-[45px] text-white'>
+                <Box className='lg:flex hidden items-center h-[45px] text-white'>
                     <Box className='h-full bg-[#ffffff33] grid place-items-center w-[45px] rounded-full'>
                         <PlaceOutlinedIcon className='text-white' />
                     </Box>
@@ -113,7 +128,7 @@ const Header = () => {
                         <Typography className='text-14 font-semibold'>Showroom</Typography>
                     </Link>
                 </Box>
-                <Box className='flex items-center h-[45px] text-white'>
+                <Box className='lg:flex hidden items-center h-[45px] text-white'>
                     <Box className='h-full bg-[#ffffff33] grid place-items-center w-[45px] rounded-full'>
                         <LocalMallOutlinedIcon className='text-white' />
                     </Box>
@@ -122,7 +137,7 @@ const Header = () => {
                         <Box className='flex items-center gap-x-1'>
                             <Typography className='text-14 font-semibold'>Sản phẩm</Typography>
                             <Box className='w-[20px] text-13 h-[20px] text-[#F06837] grid place-items-center rounded-full bg-white'>
-                                0
+                                {total}
                             </Box>
                         </Box>
                     </Link>

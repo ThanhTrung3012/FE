@@ -9,7 +9,7 @@ const HomeSlides = ({sliders}) => {
     
     return (
         <CoreSwiper
-            data={sliders}
+            data={sliders ?? []}
             modules={[FreeMode, Autoplay, Thumbs]}
             isGallery
             slidesPerView={1}
@@ -18,7 +18,7 @@ const HomeSlides = ({sliders}) => {
             className='h-[318px]'
             loop
             autoplay={{
-                delay: 2000,
+                delay: 112000,
                 disableOnInteraction: false
             }}
             speed={800}

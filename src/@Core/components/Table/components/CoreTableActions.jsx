@@ -16,6 +16,7 @@ import { useConfirm } from '@Core/components/Confirm/CoreConfirm';
 import { IconButton, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RateReviewRoundedIcon from '@mui/icons-material/RateReviewRounded';
+import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 
@@ -34,6 +35,16 @@ export const CoreTableActionDelete = ({ callback = () => {}, content = '' }) => 
         <Tooltip title='Xoá'>
             <IconButton color='error' onClick={handleDelete}>
                 <DeleteIcon />
+            </IconButton>
+        </Tooltip>
+    );
+};
+
+export const CoreTableActionChangeStatusEvaluate = ({ callback = () => {}}) => {
+    return (
+        <Tooltip title='Đổi trạng thái'>
+            <IconButton color='success' onClick={callback}>
+                <ChangeCircleRoundedIcon />
             </IconButton>
         </Tooltip>
     );

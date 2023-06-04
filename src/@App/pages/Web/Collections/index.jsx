@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { marks } from './data';
+import { marks, sorts } from './data';
 import { Link, useParams } from 'react-router-dom';
-import { CircularProgress, Slider, styled } from '@mui/material';
+import { Slider, styled } from '@mui/material';
 import handlePrice from '@Core/Helper/Price';
 import Product from './components/Product';
 import Pagination from '@mui/material/Pagination';
 import { useDebounce, useRequest } from 'ahooks';
 import { productService } from '@App/services/productService';
 import useChildrenCategories from './hooks/useChildrenCategories';
+import WebLoading from '@App/components/Loading/WebLoading';
+import ElementLoading from '@App/components/Loading/ElementLoading';
+import clsx from 'clsx';
 
 const SliderStyle = styled(Slider)({
     '& .MuiSlider-thumb': {
@@ -22,6 +25,7 @@ const SliderStyle = styled(Slider)({
 const Collections = () => {
     const { id } = useParams();
     const [page, setPage] = useState(1);
+    const [sort, setSort] = useState(null);
     const [filterPrice, setFilterPrice] = React.useState([0, 150000000]);
     const filterPriceDebounce = useDebounce(filterPrice, { wait: 500 });
     const { categories, loadingCategories } = useChildrenCategories(id);
@@ -38,19 +42,25 @@ const Collections = () => {
         if (id) {
             const stratPrice = filterPriceDebounce[0];
             const endPrice = filterPriceDebounce[1];
-            getProducts(id, { page_size: 20, page_index: page, stratPrice, endPrice });
+            getProducts(id, {
+                page_size: 20,
+                page_index: page,
+                stratPrice,
+                endPrice,
+                ...(sort ? { sort } : {})
+            });
         }
         window.scrollTo({ behavior: 'smooth', top: 0 });
-    }, [id, page, filterPriceDebounce]);
+    }, [id, page, filterPriceDebounce, sort]);
 
     const handleChange = (_, v) => {
         setFilterPrice(v);
     };
 
-    if (loadingCategories || loading) {
+    if (loadingCategories) {
         return (
             <div className='flex justify-center min-h-[70vh] items-center'>
-                <CircularProgress />
+                <WebLoading />
             </div>
         );
     }
@@ -71,7 +81,7 @@ const Collections = () => {
             </div>
             <React.Fragment>
                 <h3 className='text-17 font-bold mb-3'>Chọn theo tiêu chí:</h3>
-                <div className='flex items-start gap-3 w-1/2 mb-5'>
+                <div className='flex items-start gap-3 w-full md:w-8/12 lg:w-1/2 mb-5'>
                     <h3 className='text-17 font-bold mr-3'>Giá:</h3>
                     <SliderStyle
                         min={0}
@@ -87,15 +97,35 @@ const Collections = () => {
                         color='orange'
                     />
                 </div>
-                <h3 className='text-17 font-bold mb-3'>Sắp xếp theo:</h3>
+                <div className='mb-3'>
+                    <h3 className='text-17 font-bold mb-3'>Sắp xếp theo:</h3>
+                    <div className='flex items-center flex-wrap gap-5'>
+                        {sorts.map((item, i) => (
+                            <div
+                                key={i}
+                                onClick={() => {
+                                    setSort(item.sort)
+                                    setPage(1)
+                                }}
+                                className={clsx(
+                                    'flex items-center gap-1 rounded-xl border p-2 cursor-pointer',
+                                    sort == item.sort ? 'bg-[#F06837] text-white border-[#F06837]' : 'bg-white border-gray-400'
+                                )}
+                            >
+                                {item.icon}
+                                <span>{item.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </React.Fragment>
             {loading ? (
                 <div className='flex justify-center min-h-[50vh] items-center'>
-                    <CircularProgress />
+                    <ElementLoading />
                 </div>
             ) : products?.data?.length > 0 ? (
                 <React.Fragment>
-                    <div className='grid grid-cols-1 md:grid-cols-5 sm:grid-cols-3 gap-2'>
+                    <div className='grid grid-cols-1 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 gap-2'>
                         {products?.data?.map(item => (
                             <Product key={item?._id} item={item} />
                         ))}

@@ -17,7 +17,7 @@ const Product = ({ item }) => {
                 <div className='h-[26px]'></div>
             )}
             <Link to={`${WEB_ROUTERS.product.index}/${item?._id}`}>
-                <div className='h-[170px] min-h-[170px] w-full group-hover:translate-y-[-10px] duration-300 object-contain pt-3 ease-out mb-2'>
+                <div className='h-[170px] min-h-[170px] flex justify-center w-full group-hover:translate-y-[-10px] duration-300 object-contain pt-3 ease-out mb-2'>
                     <Image
                         src={item?.images?.[0]}
                         alt='hình ảnh'

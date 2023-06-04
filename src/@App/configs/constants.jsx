@@ -33,6 +33,11 @@ export const WEB_ROUTERS = {
     blog: {
         index: basePath + 'blog',
         router: basePath + 'blog',
+        detail:basePath + 'blog/detail',
+    },
+    order: {
+        index: basePath + 'order-success',
+        router: basePath + 'order-success',
     },
     staticPage: {
         contact: {

@@ -1,52 +1,58 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import LeftMenu from './components/LeftMenu';
 import CoreSwiper from '@Core/components/Swiper/CoreSwiper';
 import { Autoplay } from 'swiper';
 import BlogItem from './components/BlogItem';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import { Divider } from '@mui/material';
+import { Divider, Pagination } from '@mui/material';
+import usePopularBlogs from './hooks/usePopularBlogs';
+import { blogCategoryService } from '@App/services/blogCategoryService';
+import { useRequest } from 'ahooks';
+import { blogService } from '@App/services/blogService';
+import WebLoading from '@App/components/Loading/WebLoading';
+import ElementLoading from '@App/components/Loading/ElementLoading';
 
 const Blog = () => {
+    const [page, setPage] = useState(1);
+    const [categoryId, setCategoryId] = useState(null);
+    const { popularBlogs, loadingPopularBlogs } = usePopularBlogs();
+    const { data: menus, loading: loadingMenus } = useRequest(blogCategoryService.list);
+
+    const {
+        data: blogs,
+        loading,
+        run: getBlogs
+    } = useRequest(blogService.list, {
+        manual: true
+    });
+
     useEffect(() => {
         window.scrollTo({ behavior: 'smooth', top: 0 });
-    }, []);
-    const data = [
-        {
-            image: 'https://onewaymobile.vn/images/news/2023/03/resized/co-nen-mua-iphone-11-o-nam-2023_1678965271.jpeg',
-            title: 'Có nên mua iPhone 11 Pro Max ở năm 2023?',
-            content:
-                'Flagship 1 thời, iPhone 11 Pro Max ở 2023 sập giá, xấp xỉ 10 triệu vẫn ngon chán.',
-            date: new Date(),
-            category: 'Tin mới'
-        },
-        {
-            image: 'https://onewaymobile.vn/images/news/2023/03/resized/co-nen-mua-iphone-11-o-nam-2023_1678965271.jpeg',
-            title: 'Có nên mua iPhone 11 Pro Max ở năm 2023?',
-            content:
-                'Flagship 1 thời, iPhone 11 Pro Max ở 2023 sập giá, xấp xỉ 10 triệu vẫn ngon chán.',
-            date: new Date(),
-            category: 'Tin mới'
-        },
-        {
-            image: 'https://onewaymobile.vn/images/news/2023/03/resized/co-nen-mua-iphone-11-o-nam-2023_1678965271.jpeg',
-            title: 'Có nên mua iPhone 11 Pro Max ở năm 2023?',
-            content:
-                'Flagship 1 thời, iPhone 11 Pro Max ở 2023 sập giá, xấp xỉ 10 triệu vẫn ngon chán.',
-            date: new Date(),
-            category: 'Tin mới'
+        if (categoryId) {
+            getBlogs({ blog_category: categoryId, page_index: page, page_size: 5 });
+        } else {
+            getBlogs({ page_index: page, page_size: 5 });
         }
-    ];
+    }, [categoryId, page]);
 
-    return (
+    return loadingPopularBlogs || loadingMenus ? (
+        <div className='flex justify-center items-center min-h-[70vh]'>
+            <WebLoading />
+        </div>
+    ) : (
         <div className='flex relative'>
             <div className='h-screen w-2/12'>
-                <LeftMenu />
+                <LeftMenu
+                    menus={menus}
+                    onSetCategoryId={setCategoryId}
+                    categoryId={categoryId}
+                    setPage={setPage}
+                />
             </div>
             <div className='w-10/12'>
                 <div>
                     <h1 className='mb-5 text-[24px] font-bold'>Bài viết nổi bật</h1>
                     <CoreSwiper
-                        data={data}
+                        data={popularBlogs}
                         slidesPerView={1}
                         SlideItem={BlogItem}
                         isShowButton={false}
@@ -59,21 +65,40 @@ const Blog = () => {
                     />
                 </div>
                 <div className='bg-white p-8 mt-10 rounded-2xl'>
-                    <h1 className='mb-5 text-[24px] font-bold'>Mới nhất</h1>
-                    <div className='space-y-5'>
-                        {data.map((item,i) => (
-                            <Fragment key={i}>
-                                <BlogItem item={item} height='h-[240px]' width='w-[250px]'/>
-                                {i < data.length - 1 && <Divider />}
-                            </Fragment>
-                        ))}
-                    </div>
-                    <div className='flex justify-center mt-5'>
-                    <button className='w-1/2 py-3 rounded-lg bg-[#F7F7F7] hover:bg-[#F06837] hover:text-white duration-300'>
-                        Xem thêm
-                        <KeyboardArrowDownRoundedIcon />
-                    </button>
-                    </div>
+                    <h1 className='mb-5 text-[24px] font-bold'>Danh sách bài viết</h1>
+                    {loading ? (
+                        <div className='flex justify-center min-h-[50vh]'>
+                            <ElementLoading />
+                        </div>
+                    ) : (
+                        <Fragment>
+                            <div className='space-y-5'>
+                                {blogs?.data?.map((item, i) => (
+                                    <div key={i} className='m-[-32px]'>
+                                        <BlogItem
+                                            item={item}
+                                            height='h-[240px]'
+                                            imageWidth='w-[300px]'
+                                            contentWidth='w-8/12'
+                                            truncate='truncate-2'
+                                            truncate2='truncate-1'
+                                        />
+                                        {i < blogs?.data.length - 1 && <Divider />}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className='flex justify-center mt-5'>
+                                <Pagination
+                                    page={page}
+                                    count={Math.ceil(blogs?.total / Number(blogs?.page_size))}
+                                    color='orange'
+                                    onChange={(_, page) => {
+                                        setPage(page);
+                                    }}
+                                />
+                            </div>
+                        </Fragment>
+                    )}
                 </div>
             </div>
         </div>

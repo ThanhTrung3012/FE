@@ -29,13 +29,13 @@ function App() {
             {isCms ? (
                 <CoreConfirmProvider>
                     <RouterProvider router={appRouterConfigs} />
-                    <ToastContainer />
+                    <ToastContainer position='top-center' icon={false} hideProgressBar={true} autoClose={3000} className='toast_web'/>
                 </CoreConfirmProvider>
             ) : (
                 <AppContextProvider>
                     <HelmetProvider>
                         <RouterProvider router={appRouterConfigs} />
-                        <ToastContainer />
+                        <ToastContainer position='top-center' icon={false} hideProgressBar={true} autoClose={3000} className='toast_web'/>
                     </HelmetProvider>
                 </AppContextProvider>
             )}

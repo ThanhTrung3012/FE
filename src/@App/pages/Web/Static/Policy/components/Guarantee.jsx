@@ -12,7 +12,7 @@ const Guarantee = () => {
     };
 
     return (
-        <div className='p-10'>
+        <div className='p-0 md:p-10'>
             <div className='relative mb-10'>
                 <h2 className='text-center pb-2 text-[32px] font-bold'>CHÍNH SÁCH BẢO HÀNH</h2>
                 <span className='absolute w-[100px] h-[3px] bg-[#EF6837] left-1/2 translate-x-[-50%]'></span>
