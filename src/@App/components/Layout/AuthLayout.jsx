@@ -39,7 +39,9 @@ const AuthLayout = () => {
                     </div>
                 }
             >
-                <Outlet />
+                <div className='auth-container'>
+                    <Outlet />
+                </div>
             </Suspense>
         </div>
     );

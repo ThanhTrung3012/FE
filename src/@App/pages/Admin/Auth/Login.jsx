@@ -42,7 +42,7 @@ const Login = () => {
     });
 
     return (
-        <Box className='flex justify-center h-screen items-center'>
+        <Box className='flex justify-center h-screen items-center '>
             <Box component={Paper} className='w-[40%] mx-auto p-10'>
                 <Typography className='text-center' component='h1' variant='h1'>
                     Đăng nhập

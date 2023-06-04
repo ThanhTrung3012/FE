@@ -60,6 +60,12 @@ input::placeholder {
     display: none;
 }
 
+.auth-container {
+    background-image: url('./@App/assets/mobile_app.jpeg');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
 .menu-global.active {
     display: block;
     z-index: 40;
