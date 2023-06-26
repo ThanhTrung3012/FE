@@ -1,17 +1,4 @@
-/*
- * Created Date: 24-02-2023, 02:35 pm
- * Author: Nghiêm Mạnh Cường
- * Email: nghiemmanhcuong98@gmail.com
- * -----
- * Last Modified:
- * Modified By:
- * -----
- * Copyright (c) Đỗ Thành Trung
- * -----
- * HISTORY:
- * Date      	By	Comments
- * ----------	---	----------------------------------------------------------
- */
+
 
 import AppContextProvider from './AppContext';
 import { ToastContainer } from 'react-toastify';

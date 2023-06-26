@@ -1,17 +1,3 @@
-/*
- * Created Date: 04-02-2023, 10:45 pm
- * Author: Nghiêm Mạnh Cường
- * Email: nghiemmanhcuong98@gmail.com
- * -----
- * Last Modified:
- * Modified By:
- * -----
- * Copyright (c) Đỗ Thành trung
- * -----
- * HISTORY:
- * Date      	By	Comments
- * ----------	---	----------------------------------------------------------
- */
 
 import { ADD_CART, REMOVE_CART, CHANGE_QUANTITY, CHANGE_COLOR, CLEAR_CART, TOGGLE_MENU, CLOSE_MENU } from './constants';
 

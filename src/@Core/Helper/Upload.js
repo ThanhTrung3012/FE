@@ -1,17 +1,4 @@
-/*
- * Created Date: 04-03-2023, 00:15 pm
- * Author: Nghiêm Mạnh Cường
- * Email: nghiemmanhcuong98@gmail.com
- * -----
- * Last Modified:
- * Modified By:
- * -----
- * Copyright (c) Đỗ Thành trung
- * -----
- * HISTORY:
- * Date      	By	Comments
- * ----------	---	----------------------------------------------------------
- */
+
 
 import { errorMessage } from './Message';
 

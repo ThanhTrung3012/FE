@@ -1,17 +1,3 @@
-/*
- * Created Date: 17-02-2023, 23:00 pm
- * Author: Nghiêm Mạnh Cường
- * Email: nghiemmanhcuong98@gmail.com
- * -----
- * Last Modified:
- * Modified By:
- * -----
- * Copyright (c) Đỗ Thành trung
- * -----
- * HISTORY:
- * Date      	By	Comments
- * ----------	---	----------------------------------------------------------
- */
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';

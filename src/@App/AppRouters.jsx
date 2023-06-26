@@ -1,17 +1,4 @@
-/*
- * Created Date: 08-02-2023, 14:30 pm
- * Author: Nghiêm Mạnh Cường
- * Email: nghiemmanhcuong98@gmail.com
- * -----
- * Last Modified:
- * Modified By:
- * -----
- * Copyright (c) Đỗ Thành Trung
- * -----
- * HISTORY:
- * Date      	By	Comments
- * ----------	---	----------------------------------------------------------
- */
+
 
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import React from 'react';

@@ -1,17 +1,4 @@
-/*
- * Created Date: 04-02-2023, 10:45 pm
- * Author: Nghiêm Mạnh Cường
- * Email: nghiemmanhcuong98@gmail.com
- * -----
- * Last Modified:
- * Modified By:
- * -----
- * Copyright (c) Đỗ Thành Trung
- * -----
- * HISTORY:
- * Date      	By	Comments
- * ----------	---	----------------------------------------------------------
- */
+
 
 import axios from 'axios';
 import queryString from 'query-string';
